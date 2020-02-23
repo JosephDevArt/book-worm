@@ -1,0 +1,31 @@
+nav a {
+  display: block;
+  padding: 1.2rem 1rem;
+  width: 98%;
+  display: flex;
+
+  align-items: center;
+}
+.link_icon {
+  margin-right: 1.5rem;
+  font-size: 1.4rem;
+  color: rgb(240, 240, 240);
+}
+
+.link_text {
+  color: rgb(240, 240, 240);
+  display: block;
+}
+
+.activeLink {
+  transition: 0.2s ease;
+  background-color: white;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+.activeLink i {
+  color: #e000fe;
+}
+.activeLink .link_text {
+  color: rgb(30, 30, 30);
+}

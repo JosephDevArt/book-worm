@@ -1,0 +1,8 @@
+main {
+  background-color: #f4f4f4;
+  position: absolute;
+  width: calc(100% - 300px);
+  padding: 2rem;
+  top: 65px;
+  margin-left: 300px;
+}

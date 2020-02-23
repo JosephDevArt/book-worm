@@ -1,0 +1,28 @@
+.user_account {
+  display: grid;
+  grid-template-areas:
+    ". img ."
+    "name img ."
+    ". img logout";
+  width: 200px;
+}
+.user_account img {
+  grid-area: img;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgb(255, 0, 255);
+  border-radius: 50%;
+}
+
+.user_name {
+  color: rgb(101, 101, 101);
+  text-shadow: 1px 1px 2px rgb(211, 211, 211);
+  grid-area: name;
+}
+
+.logout_icon {
+  grid-area: logout;
+  color: rgb(181, 181, 181);
+  cursor: pointer;
+}

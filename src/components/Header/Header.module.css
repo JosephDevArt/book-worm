@@ -1,0 +1,15 @@
+header {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.4rem;
+  height: 65px;
+  box-shadow: 2px 2px 3px #d6d6d6;
+  /*Added  Z-Index  oo box shadow will be visible*/
+  z-index: 1;
+  position: fixed;
+  width: calc(100% - 300px);
+  margin-left: 320px;
+  right: 0;
+}

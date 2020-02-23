@@ -1,0 +1,21 @@
+.sidebar {
+  position: fixed;
+  height: calc(100% - 65px);
+  right: 0;
+  bottom: 0;
+  width: 350px;
+  padding: 1rem;
+  /* z-index: 2; */
+  box-shadow: 2px 2px 3px #d6d6d6;
+  box-shadow: inset 1px 0px 2px rgb(221, 221, 221);
+  background-color: rgb(255, 255, 255);
+  overflow: auto;
+}
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+.sidebar {
+  -ms-overflow-style: none;
+}

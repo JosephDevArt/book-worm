@@ -10,12 +10,9 @@ function Nav() {
         <Link name="Home" className="fas fa-home" to="/home" />
         <Link name="My Books" className="fas fa-book" to="/myBooks" />
         <Link name="Read later" className="far fa-star" to="/readLater" />
+        {/* <i class="far fa-comments"></i> */}
         <Link name="My Posts" className="fas fa-paper-plane" to="/myPosts" />
-        <Link
-          name="Search History"
-          className="fas fa-history"
-          to="/searchHistory"
-        />
+        <Link name="Dialogs" className="far fa-comments" to="/dialogs" />
       </ul>
     </nav>
   );

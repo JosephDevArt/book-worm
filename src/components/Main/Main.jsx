@@ -1,6 +1,6 @@
 import React from "react";
 import Home from "./Home/Home";
-import SearchHistory from "./SearchHistory/SearchHistory";
+import Dialogs from "./Dialogs/Dialogs";
 import MyPosts from "./MyPosts/MyPosts";
 import ReadLater from "./ReadLater/ReadLater";
 import MyBooks from "./MyBooks/MyBooks";
@@ -11,7 +11,7 @@ function Main() {
   return (
     <main>
       <Route path="/home" component={Home} />
-      <Route path="/searchHistory" component={SearchHistory} />
+      <Route path="/dialogs" component={Dialogs} />
       <Route path="/myPosts" component={MyPosts} />
       <Route path="/readLater" component={ReadLater} />
       <Route path="/myBooks" component={MyBooks} />

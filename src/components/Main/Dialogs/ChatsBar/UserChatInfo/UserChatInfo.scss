@@ -1,0 +1,16 @@
+.user_chat_info {
+  display: flex;
+  border-bottom: 1px solid rgb(209, 209, 209);
+  padding: 1rem 0;
+  justify-content: space-between;
+  img {
+    width: 37px;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+  p {
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+}

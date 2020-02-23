@@ -1,16 +1,13 @@
 import React from "react";
 import ChatsBar from "./ChatsBar/ChatsBar";
 import "./dialogs.scss";
+import Chat from "./Chat/Chat";
 function Dialogs() {
   return (
-    <div>
-      <div className="item">container</div>
-      <div className="item">container</div>
-      <div className="item">container</div>
-      <div className="item">container</div>
-      <div className="item">container</div>
+    <section className="dialogs_section">
       <ChatsBar />
-    </div>
+      <Chat />
+    </section>
   );
 }
 

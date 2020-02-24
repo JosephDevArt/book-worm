@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./Home.module.css";
-function HomeContent() {
+function Home() {
   return (
     <div>
       <div className={classes.home}>This is Home content</div>
@@ -11,4 +11,4 @@ function HomeContent() {
   );
 }
 
-export default HomeContent;
+export default Home;

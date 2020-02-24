@@ -1,6 +1,8 @@
 main {
   background-color: #f4f4f4;
-  /* width: calc(100% - 300px); */
+
+  width: calc(100% - 300px);
+  position: absolute;
 
   top: 65px;
   /* background-color: black; */

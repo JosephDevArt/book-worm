@@ -17,6 +17,8 @@ function ChatsBar() {
       <UserChatInfo />
       <UserChatInfo />
       <UserChatInfo />
+      <UserChatInfo />
+      <UserChatInfo />
     </div>
   );
 }

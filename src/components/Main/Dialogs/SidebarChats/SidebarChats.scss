@@ -1,22 +1,17 @@
-.sidebar {
+.sidebar_chats {
   position: fixed;
-  height: calc(100% - 65px);
-  right: 0;
-  bottom: 0;
   width: 350px;
+  height: calc(100% - 65px); // - height of the header bar
+  top: 65px; // - height of the header bar
+  right: 0;
   padding: 0.6rem 1rem 0 1rem;
-
-  /* z-index: 2; */
   box-shadow: 2px 2px 3px #d6d6d6;
   box-shadow: inset 1px 0px 2px rgb(221, 221, 221);
   background-color: rgb(255, 255, 255);
   overflow: auto;
-}
-.sidebar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for IE and Edge */
-.sidebar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE and Edge */
   -ms-overflow-style: none;
 }

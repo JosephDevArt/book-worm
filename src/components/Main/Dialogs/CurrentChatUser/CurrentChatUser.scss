@@ -1,0 +1,23 @@
+.current_chat_user_info {
+  // position: fixed;
+  // top: 65px;
+  width: calc(100% - 350px); // - width of  SidebarChats(right);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  box-shadow: 1px 1px 3px #dddddd;
+  padding: 0 1rem;
+  height: 64.5px;
+  img {
+    width: 30px;
+  }
+  h4 {
+    color: rgb(50, 50, 50);
+    font-size: 1rem;
+  }
+  p {
+    opacity: 0.5;
+    font-size: 0.8rem;
+  }
+}

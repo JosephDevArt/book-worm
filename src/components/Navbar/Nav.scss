@@ -7,13 +7,12 @@ nav {
   box-shadow: inset -1px 0px 3px rgb(108, 108, 108);
   z-index: 2;
   background: linear-gradient(to top right, #e000fe, #9630fd);
-}
-
-.logo {
-  width: 260px;
-  margin: 1.8rem;
-}
-nav ul {
-  border-top: 10px solid #f4f4f4;
-  padding-top: 2rem;
+  .logo {
+    width: 260px;
+    margin: 1.8rem;
+  }
+  ul {
+    border-top: 10px solid #f4f4f4;
+    padding-top: 2rem;
+  }
 }

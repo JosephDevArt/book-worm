@@ -1,12 +1,14 @@
 import React from "react";
-import ChatsBar from "./ChatsBar/ChatsBar";
 import "./dialogs.scss";
+import SidebarChats from "./SidebarChats/SidebarChats";
 import Chat from "./Chat/Chat";
+import CurrentChatUser from "./CurrentChatUser/CurrentChatUser";
 function Dialogs() {
   return (
     <section className="dialogs_section">
-      <ChatsBar />
+      <CurrentChatUser />
       <Chat />
+      <SidebarChats />
     </section>
   );
 }

@@ -1,0 +1,7 @@
+main {
+  background-color: #f4f4f4;
+  width: calc(100% - 300px); // 100% - width of navbar
+  position: absolute;
+  top: 65px; // - height of the header bar
+  right: 0;
+}

@@ -1,131 +1,74 @@
-.send_message_box {
-  //   position: absolute;
-  //   bottom: 0;
-  background-color: white;
-  //   width: calc(100% - 650px);
-  width: 100%;
-  box-shadow: -1px -1px 3px #dddddd;
-  //   z-index: 44;
-  height: 65px;
-
-  padding: 0.6rem 1rem;
-  display: flex;
-  justify-content: space-between;
-
-  .send_btn {
-    padding: 0.5rem 1rem;
-    background-color: #e000fe;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-  }
-  textarea {
-    width: 90%;
-    background-color: #f4f4f4;
-    border-radius: 5px;
-    resize: none;
-
-    padding: 16px;
-    border: 0.5px solid rgb(209, 209, 209);
-    overflow: auto;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    // box-shadow: 1px 1px 3px #dddddd;
-  }
-}
-
-.chat_history {
-  padding: 1rem;
-  //   border: 1px solid black;
-  overflow: auto;
-  // width: calc(100% - 650px);
-  width: 100%;
-  //   position: relative;
-  margin-top: 65px;
-  height: calc(100vh - 195px);
-  z-index: 20;
-  // &::-webkit-scrollbar {
-  //   display: none;
-  // }
-  // &::-webkit-scrollbar {
-  //   width: 40px;
-  // }
-  &::-webkit-scrollbar {
-    width: 5px;
-  }
-
-  /* Track */
-  // &::-webkit-scrollbar-track {
-  //   background: #f1f1f1;
-  // }
-
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: #e000fe;
-  }
-
-  /* Handle on hover */
-  &::-webkit-scrollbar-thumb:hover {
-    background: rgb(185, 0, 209);
-  }
-  scrollbar-track-color: red;
-  .user_message,
-  .my_message {
-    clear: both;
-    display: block;
-    font-size: 0.9rem;
-    padding: 0.8rem 1.2rem;
-    border-radius: 40px;
-    max-width: 80%;
-    line-height: 20px;
-    margin-bottom: 1rem;
-    // font-family: "Roboto", sans-serif, serif;
-  }
-  .my_message {
-    background-color: #e000fe;
-    color: white;
-    float: right;
-  }
-  .user_message {
-    background-color: rgb(235, 235, 235);
-    float: left;
-  }
-}
-
 .chat_section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.current_chat_user_info {
-  position: fixed;
-  top: 65px;
-  width: calc(100% - 650px);
-  // z-index: 100;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: white;
-  box-shadow: 1px 1px 3px #dddddd;
-  // width: 100%;
-  padding: 0 1rem;
-  height: 64.5px;
-  //   align-self: flex-start;
-  // margin-top: 65px;
-
-  img {
-    width: 30px;
+  width: calc(100% - 350px);
+  .send_message_box {
+    background-color: white;
+    box-shadow: -1px -1px 3px #dddddd;
+    height: 65px;
+    padding: 0.6rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    .send_btn {
+      padding: 0.5rem 1rem;
+      background-color: #e000fe;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+    }
+    textarea {
+      width: 90%;
+      background-color: #f4f4f4;
+      border-radius: 5px;
+      resize: none;
+      padding: 16px;
+      border: 0.5px solid rgb(209, 209, 209);
+      overflow: auto;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
   }
-  h4 {
-    color: rgb(50, 50, 50);
-    font-size: 1rem;
-  }
-  p {
-    opacity: 0.5;
-    font-size: 0.8rem;
+
+  //CHAT HISTORY SECTION
+
+  .chat_history {
+    padding: 1rem 1rem 0 1rem;
+    overflow: auto;
+    height: calc(
+      100vh - 194.5px
+    ); //-height of Header,CurrentUserChat,.send_message_box
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #e000fe;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgb(185, 0, 209);
+    }
+
+    .user_message,
+    .my_message {
+      clear: both;
+      display: block;
+      font-size: 0.9rem;
+      padding: 0.8rem 1.2rem;
+      border-radius: 40px;
+      max-width: 80%;
+      line-height: 20px;
+      margin-bottom: 1rem;
+    }
+    .my_message {
+      background-color: #e000fe;
+      color: white;
+      float: right;
+    }
+    .user_message {
+      background-color: rgb(235, 235, 235);
+      float: left;
+    }
   }
 }

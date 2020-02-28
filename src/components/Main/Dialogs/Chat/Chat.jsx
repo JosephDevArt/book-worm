@@ -1,16 +1,9 @@
 import React from "react";
 import "./Chat.scss";
-import userImg from "../ChatsBar/user.svg";
+
 function Chat() {
   return (
     <div className="chat_section">
-      <div className="current_chat_user_info">
-        <img src={userImg} alt="" />
-        <div className="user_info">
-          <h4>Aslan Gurbanov</h4>
-          <p>Online</p>
-        </div>
-      </div>
       <div className="chat_history">
         <div className="user_message">
           Hey Man how is it goint where have you been, to make 2 lines of text

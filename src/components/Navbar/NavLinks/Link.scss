@@ -3,7 +3,6 @@ nav a {
   padding: 1.2rem 1rem;
   width: 98%;
   display: flex;
-
   align-items: center;
 }
 .link_icon {
@@ -22,10 +21,10 @@ nav a {
   background-color: white;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
-}
-.activeLink i {
-  color: #e000fe;
-}
-.activeLink .link_text {
-  color: rgb(30, 30, 30);
+  i {
+    color: #e000fe;
+  }
+  .link_text {
+    color: #2f2f2f;
+  }
 }

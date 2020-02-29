@@ -5,7 +5,7 @@ import Chat from "./Chat/Chat";
 import CurrentChatUser from "./CurrentChatUser/CurrentChatUser";
 function Dialogs() {
   return (
-    <section className="dialogs_section">
+    <section className="dialogs-section">
       <CurrentChatUser />
       <Chat />
       <SidebarChats />

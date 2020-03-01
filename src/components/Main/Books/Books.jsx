@@ -47,6 +47,7 @@ class Books extends React.Component {
           prevState.items = [...prevState.items, ...data.items];
           prevState.pagination = prevState.pagination + 5;
           // Hey checking merge of branches
+          const chekcingMerge = 1;
           return prevState;
         });
       });

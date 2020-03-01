@@ -25,7 +25,8 @@ class Books extends React.Component {
         this.setState({
           items: data.items,
           totalItems: data.totalItems,
-          isLoaded: true
+          isLoaded: true,
+          pagination: 5
         });
         // console.log(this.state.items[0].volumeInfo.title);
       })
@@ -35,8 +36,7 @@ class Books extends React.Component {
   }
   handleClick() {
     fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=python&maxResults=5&startIndex=${this
-        .state.pagination + 5}`,
+      `https://www.googleapis.com/books/v1/volumes?q=python&maxResults=5&startIndex=${this.state.pagination}`,
       {
         method: "GET"
       }
@@ -44,19 +44,16 @@ class Books extends React.Component {
       .then(response => response.json())
       .then(data => {
         this.setState(prevState => {
-          console.log(data);
-          const merge = (...objects) => ({ ...objects });
-          const merged = merge(this.state.items, data.items);
-          const hey = [...merged[0], ...merged[1]];
-          this.state.items = hey;
-          this.state.pagination = prevState.pagination + 5;
-          return this.state;
+          prevState.items = [...prevState.items, ...data.items];
+          prevState.pagination = prevState.pagination + 5;
+
+          return prevState;
         });
       });
   }
 
   render() {
-    console.log(this.state);
+    console.log(this.state.pagination);
     if (this.state.isLoaded) {
       return (
         <div className="books-section">
@@ -66,7 +63,7 @@ class Books extends React.Component {
           <div className="total-and-sort">
             <div className="total-books">
               <p>Total</p>
-              <h3>{this.state.items.totalItems} Books</h3>
+              <h3>{this.state.totalItems} Books</h3>
             </div>
             <div className="sort-by">
               <p>Sort by</p>

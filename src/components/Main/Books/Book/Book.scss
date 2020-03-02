@@ -1,0 +1,28 @@
+.book {
+  height: 340px;
+  position: relative;
+  .title-outer {
+    color: rgb(60, 60, 60);
+    font-size: 0.9rem;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  &:hover {
+    .title-outer {
+      display: none;
+    }
+    .book-inner-info {
+      display: flex;
+      height: 115%;
+      transform: translate(-5%, -5%);
+      width: 115%;
+      background-color: rgb(66, 66, 66);
+    }
+    img {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}

@@ -4,7 +4,7 @@ import Home from "./Home/Home";
 import Dialogs from "./Dialogs/Dialogs";
 import MyPosts from "./MyPosts/MyPosts";
 import ReadLater from "./ReadLater/ReadLater";
-import MyBooks from "./Books/Books";
+import Books from "./Books/Books";
 
 import { Route } from "react-router-dom";
 
@@ -15,7 +15,7 @@ function Main() {
       <Route path="/dialogs" component={Dialogs} />
       <Route path="/myPosts" component={MyPosts} />
       <Route path="/readLater" component={ReadLater} />
-      <Route path="/myBooks" component={MyBooks} />
+      <Route path="/myBooks" component={Books} />
     </main>
   );
 }

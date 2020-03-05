@@ -5,12 +5,13 @@ function BookInnerInfo(props) {
     title,
     authors = "unknown",
     pageCount = "unknown num. of",
-    categories = "unknown",
+    categories = "no category",
     averageRating = "no rating",
     publishedDate = "unknown",
     description = "This book doesn't have a description",
     previewLink
   } = props.info;
+
   return (
     <div className="book-inner-info">
       <h2 className="title-inner">{title}</h2>
@@ -41,7 +42,7 @@ function BookInnerInfo(props) {
       <p className="description">{description.slice(0, 200)}...</p>
       <div className="book-btns">
         <button>Read Later</button>
-        <a href={previewLink} target="_blank">
+        <a href={previewLink} target="_blank" rel="noopener noreferrer">
           Preview
         </a>
       </div>

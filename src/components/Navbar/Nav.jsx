@@ -8,7 +8,7 @@ function Nav() {
       <img src={logo} className="logo" alt={"logo"} />
       <ul>
         <Link name="Home" className="fas fa-home" to="/home" />
-        <Link name="My Books" className="fas fa-book" to="/myBooks" />
+        <Link name="Books" className="fas fa-book" to="/myBooks" />
         <Link name="Read later" className="far fa-star" to="/readLater" />
         <Link name="My Posts" className="fas fa-paper-plane" to="/myPosts" />
         <Link name="Dialogs" className="far fa-comments" to="/dialogs" />

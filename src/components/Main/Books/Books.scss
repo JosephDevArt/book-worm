@@ -26,14 +26,17 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+
         .icon-sort {
           border: none;
-          width: 3.45rem;
+          width: 50px;
+          padding: 5px;
           display: flex;
           align-items: center;
           background-color: rgb(66, 66, 66);
           transition: 0.5s ease;
           &:hover {
+            transition: 2s;
             transform: rotateY(-180deg);
           }
         }
@@ -41,7 +44,7 @@
           font-size: 1.6rem;
           padding: 0.2rem 0.6rem;
           background-color: rgb(66, 66, 66);
-          color: white;
+          color: rgb(240, 240, 240);
           border: none;
           margin-left: 2px;
         }
@@ -52,7 +55,8 @@
 
 .books {
   display: grid;
-  grid-gap: 3em;
+  grid-column-gap: 3em;
+  grid-row-gap: 4em;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-template-rows: auto;
 }

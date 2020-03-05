@@ -25,20 +25,17 @@
       .sort-boxes {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-
+        // align-items: center;
+        .rotate {
+          transform: rotateY(-180deg);
+        }
         .icon-sort {
           border: none;
-          width: 50px;
-          padding: 5px;
+          width: 55px;
+          padding: 0.3rem;
           display: flex;
-          align-items: center;
           background-color: rgb(66, 66, 66);
           transition: 0.5s ease;
-          &:hover {
-            transition: 2s;
-            transform: rotateY(-180deg);
-          }
         }
         .sort-select {
           font-size: 1.6rem;

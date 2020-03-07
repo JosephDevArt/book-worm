@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Books.scss";
 import sortIcon from "./iconfinder-icon.svg";
 import Book from "./Book/Book";
+import { debounce, throttle } from "lodash";
 function Books() {
   const [fetching, setFetching] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -18,20 +19,25 @@ function Books() {
     setUserInput(e.target.value);
   };
 
+  const handleFetchError = response => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json(); //we only get here if there is no error
+  };
+  const handleFetch = (input, startIndex) => {
+    //startIndex = booksLoaded
+    return fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=${input}&maxResults=20&startIndex=${startIndex}`,
+      { method: "GET" }
+    ).then(handleFetchError);
+  };
+
   const searchBtnClick = e => {
     e.preventDefault();
     setInitialSearch(userInput); //store first userInput so that on scroll appropriate books will be loaded
     setFetching(true);
-    fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${userInput}&maxResults=20&startIndex=0`,
-      { method: "GET" }
-    )
-      .then(response => {
-        if (!response.ok) {
-          throw response;
-        }
-        return response.json(); //we only get here if there is no error
-      })
+    handleFetch(userInput, 0)
       .then(data => {
         if (data.totalItems === 0) {
           setErrorMessage("No Books Found.");
@@ -49,8 +55,32 @@ function Books() {
           setLoaded(true);
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        setFetching(false);
+        console.log(err);
+      });
   };
+  function handleScroll() {
+    /*
+    Load more books on scroll
+    If first load < 20 books => prevent load on scroll
+    */
+    if (items.length >= 20) {
+      let lastLi = document.querySelector(".books li:last-child");
+      let lastLiOffset = lastLi.offsetTop + lastLi.clientHeight;
+      let pageOffset = window.pageYOffset + window.innerHeight;
+      if (pageOffset > lastLiOffset) {
+        handleFetch(initialUserInput, booksLoaded).then(data => {
+          setBooksLoaded(booksLoaded + 20);
+          setItems([...items, ...data.items]);
+        });
+      }
+    }
+  }
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
 
   const handleChange = e => {
     setSelectValue(e.target.value);
@@ -93,36 +123,15 @@ function Books() {
   const rotateIconClick = () => {
     setRotateSortIcon(!rotateSortIcon);
   };
-
-  function handleScroll() {
-    /*
-    Load more books on scroll
-    If first load < 20 books => prevent load on scroll
-    */
-    if (items.length >= 20) {
-      let lastLi = document.querySelector(".books li:last-child");
-      let lastLiOffset = lastLi.offsetTop + lastLi.clientHeight;
-      let pageOffset = window.pageYOffset + window.innerHeight;
-      if (pageOffset > lastLiOffset) {
-        fetch(
-          `https://www.googleapis.com/books/v1/volumes?q=${initialUserInput}&maxResults=20&startIndex=${booksLoaded}`,
-          { method: "GET" }
-        )
-          .then(response => response.json())
-          .then(data => {
-            setBooksLoaded(booksLoaded + 20);
-            setItems([...items, ...data.items]);
-          });
-      }
-    }
-  }
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  });
+  var checkThrottle = debounce(() => {
+    console.log("hey");
+  }, 1000);
 
   return (
     <section className="books-section">
+      <button type="button" onClick={checkThrottle}>
+        Check thorottle
+      </button>
       <form
         onSubmit={searchBtnClick}
         style={{ marginTop: loaded ? 50 : 200 }}

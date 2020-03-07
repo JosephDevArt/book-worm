@@ -1,6 +1,40 @@
 .books-section {
   width: 90%;
+  height: 100%;
   margin: 2rem auto;
+  position: relative;
+
+  .search-books {
+    transition: 1s ease;
+    display: flex;
+    justify-content: center;
+    .input-search-books {
+      padding: 0.8rem 0.8rem;
+      width: 400px;
+      border: 1px solid rgb(176, 0, 208);
+      font-size: 1.2rem;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+    .btn-search {
+      padding: 0.8rem 0.8rem;
+      border: none;
+      background-color: rgb(176, 0, 208);
+      color: white;
+      font-size: 1.2rem;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  }
+  .error-message {
+    text-align: center;
+    font-size: 2rem;
+    margin: 2rem;
+    color: rgb(66, 66, 66);
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+
   .total-and-sort {
     margin: 2rem 0;
     display: flex;
@@ -20,12 +54,13 @@
     }
     .num-books {
       font-size: 2.2rem;
+      color: rgb(66, 66, 66);
     }
     .sort-by {
-      .sort-boxes {
+      .sort-options {
         display: flex;
         justify-content: space-between;
-        // align-items: center;
+
         .rotate {
           transform: rotateY(-180deg);
         }

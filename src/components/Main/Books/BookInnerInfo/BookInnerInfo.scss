@@ -1,4 +1,4 @@
-.book-inner-info {
+.book-info-inner {
   display: none; //Add 'display:flex' on hover 'Book'
   flex-direction: column;
   position: absolute;
@@ -9,12 +9,12 @@
     font-size: 1.4rem;
   }
   .author-inner,
-  .pages-and-year {
+  .pages-and-year-inner {
     color: rgb(187, 187, 187);
     font-size: 0.8rem;
     margin-top: 8px;
   }
-  .category-inner-and-rate {
+  .category-and-rate-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -22,7 +22,7 @@
     .category-inner {
       font-size: 1rem;
     }
-    .rate {
+    .rate-inner {
       color: rgb(240, 240, 240);
       font-size: 0.8rem;
     }
@@ -32,22 +32,21 @@
     color: rgb(240, 240, 240);
     text-transform: capitalize;
   }
-  .pages-and-year {
+  .pages-and-year-inner {
     display: flex;
     justify-content: space-between;
     i {
       margin-right: 5px;
     }
   }
-  .description {
+  .description-inner {
     margin-top: 8px;
     color: rgb(230, 230, 230);
     font-size: 0.9rem;
     line-height: 1.3;
-
     overflow: hidden;
   }
-  .book-btns {
+  .book-btns-inner {
     display: flex;
     justify-content: space-between;
     margin-top: auto; //push buttons to the bottom

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import "./Books.scss";
 import sortIcon from "./iconfinder-icon.svg";
 import Book from "./Book/Book";
 import { debounce, throttle } from "lodash";
+
 function Books() {
   const [fetching, setFetching] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -15,9 +16,9 @@ function Books() {
   const [initialUserInput, setInitialSearch] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const searchInputChange = e => {
-    setUserInput(e.target.value);
-  };
+  const searchInputChange = debounce(text => {
+    setUserInput(text);
+  }, 300);
 
   const handleFetchError = response => {
     if (!response.ok) {
@@ -26,15 +27,14 @@ function Books() {
     return response.json(); //we only get here if there is no error
   };
   const handleFetch = (input, startIndex) => {
-    //startIndex = booksLoaded
+    //startIndex equals to booksLoaded
     return fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${input}&maxResults=20&startIndex=${startIndex}`,
       { method: "GET" }
     ).then(handleFetchError);
   };
 
-  const searchBtnClick = e => {
-    e.preventDefault();
+  const searchBtnClick = debounce(() => {
     setInitialSearch(userInput); //store first userInput so that on scroll appropriate books will be loaded
     setFetching(true);
     handleFetch(userInput, 0)
@@ -59,28 +59,29 @@ function Books() {
         setFetching(false);
         console.log(err);
       });
-  };
-  function handleScroll() {
-    /*
-    Load more books on scroll
-    If first load < 20 books => prevent load on scroll
-    */
+  }, 200);
+  const handleScroll = throttle(() => {
+    // Load more books on scroll
     if (items.length >= 20) {
+      // If first load < 20 books => prevent load on scroll
       let lastLi = document.querySelector(".books li:last-child");
       let lastLiOffset = lastLi.offsetTop + lastLi.clientHeight;
       let pageOffset = window.pageYOffset + window.innerHeight;
       if (pageOffset > lastLiOffset) {
+        setFetching(true);
         handleFetch(initialUserInput, booksLoaded).then(data => {
           setBooksLoaded(booksLoaded + 20);
           setItems([...items, ...data.items]);
+          setFetching(false);
         });
       }
     }
-  }
+  }, 500);
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  });
+  }, [booksLoaded]);
 
   const handleChange = e => {
     setSelectValue(e.target.value);
@@ -123,29 +124,23 @@ function Books() {
   const rotateIconClick = () => {
     setRotateSortIcon(!rotateSortIcon);
   };
-  var checkThrottle = debounce(() => {
-    console.log("hey");
-  }, 1000);
-
   return (
     <section className="books-section">
-      <button type="button" onClick={checkThrottle}>
-        Check thorottle
-      </button>
       <form
-        onSubmit={searchBtnClick}
+        onSubmit={e => e.preventDefault()}
         style={{ marginTop: loaded ? 50 : 200 }}
         className="search-books"
       >
         <input
           type="text"
           className="input-search-books"
-          onChange={searchInputChange}
+          onChange={e => searchInputChange(e.target.value)}
           placeholder="Search books..."
           required
         ></input>
         <button
-          type="submit"
+          type="button"
+          onClick={searchBtnClick}
           disabled={!userInput || userInput[0] == " "}
           className="btn-search"
         >
@@ -154,6 +149,7 @@ function Books() {
         </button>
       </form>
       <p className="error-message">{errorMessage}</p>
+
       <div className="search-results">
         <div className="total-and-sort">
           <div className="total-books">
@@ -188,6 +184,9 @@ function Books() {
             <Book key={item.id} items={item} />
           ))}
         </ul>
+        <div className="more-content-load-text">
+          {fetching && "Loading more books..."}
+        </div>
       </div>
     </section>
   );

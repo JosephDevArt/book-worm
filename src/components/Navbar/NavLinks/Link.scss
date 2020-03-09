@@ -4,6 +4,10 @@ nav a {
   width: 98%;
   display: flex;
   align-items: center;
+
+  &:hover .link_text {
+    transform: scale(1.1);
+  }
 }
 .link_icon {
   margin-right: 1.5rem;
@@ -14,6 +18,7 @@ nav a {
 .link_text {
   color: rgb(240, 240, 240);
   display: block;
+  transition: 0.2s ease;
 }
 
 .activeLink {

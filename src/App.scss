@@ -7,6 +7,19 @@
 html,
 body {
   font-family: "Montserrat", sans-serif, serif;
+
+  &::-webkit-scrollbar {
+    width: 15px;
+    background-color: #ffffff;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #e000fe;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgb(164, 0, 186);
+  }
 }
 a {
   text-decoration: none;

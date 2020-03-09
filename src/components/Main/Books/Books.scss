@@ -24,6 +24,10 @@
       font-size: 1.2rem;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
+      cursor: pointer;
+      &:hover {
+        background-color: rgb(161, 0, 189);
+      }
     }
   }
   .error-message {
@@ -91,4 +95,13 @@
   grid-row-gap: 4em;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-template-rows: auto;
+  padding-bottom: 2rem;
+}
+
+.more-content-load-text {
+  color: rgb(179, 54, 208);
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
 }

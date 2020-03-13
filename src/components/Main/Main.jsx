@@ -6,7 +6,7 @@ import MyPosts from "./MyPosts/MyPosts";
 import ReadLater from "./ReadLater/ReadLater";
 import Books from "./Books/Books";
 
-import { Route, Switch, BrowserRouter } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 function Main() {
   return (

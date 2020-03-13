@@ -3,14 +3,16 @@ import "./Books.scss";
 import sortIcon from "./iconfinder-icon.svg";
 import Book from "./Book/Book";
 import { debounce, throttle } from "lodash";
-
-function Books() {
+import { connect } from "react-redux";
+import { rotateSortIcon } from "../../../actions/booksActions";
+function Books(props) {
+  console.log(props);
   const [fetching, setFetching] = useState(false);
   const [items, setItems] = useState([]);
   const [totalItems, setTotalItems] = useState(0);
   const [booksLoaded, setBooksLoaded] = useState(0); //add 20 books on scroll
   const [selectValue, setSelectValue] = useState("averageRating");
-  const [rotateSortIcon, setRotateSortIcon] = useState(false);
+  // const [rotateSortIcon, setRotateSortIcon] = useState(false);
   const [userInput, setUserInput] = useState("");
   const [initialUserInput, setInitialSearch] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -112,15 +114,15 @@ function Books() {
       }
     });
     // Sort by Descending/Ascending order
-    if (rotateSortIcon) {
+    if (props.sortIconRotated) {
       newItems.reverse();
     }
     setItems(newItems);
-  }, [selectValue, booksLoaded, rotateSortIcon]);
+  }, [selectValue, booksLoaded, props.sortIconRotated]);
 
-  const rotateIconClick = () => {
-    setRotateSortIcon(!rotateSortIcon);
-  };
+  // const rotateIconClick = () => {
+  //   setRotateSortIcon(!rotateSortIcon);
+  // };
   return (
     <section className="books-section">
       <form
@@ -158,8 +160,10 @@ function Books() {
             <div className="sort-options">
               <object type="image/sbf+xml" data={sortIcon}>
                 <img
-                  onClick={rotateIconClick}
-                  className={`icon-sort ${rotateSortIcon ? "rotate" : ""}`}
+                  onClick={props.rotateSortIcon}
+                  className={`icon-sort ${
+                    props.sortIconRotated ? "rotate" : ""
+                  }`}
                   src={sortIcon}
                   alt="sort"
                 />
@@ -189,4 +193,16 @@ function Books() {
   );
 }
 
-export default Books;
+const mapStateToProps = state => {
+  return {
+    sortIconRotated: state.sortIconRotated
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    rotateSortIcon: () => dispatch(rotateSortIcon())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Books);

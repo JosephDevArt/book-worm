@@ -10,7 +10,7 @@ function Book(props) {
 
   return (
     <li className="book">
-      <BookInnerInfo info={props.items.volumeInfo} />
+      <BookInnerInfo info={props.items.volumeInfo} getName={props.getName} />
       <img src={image ? image : noImg} alt="Book" />
       <p className="title-outer">{title}</p>
     </li>

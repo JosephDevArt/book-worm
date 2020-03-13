@@ -4,10 +4,6 @@ nav a {
   width: 98%;
   display: flex;
   align-items: center;
-
-  &:hover .link_text {
-    transform: scale(1.1);
-  }
 }
 .link_icon {
   margin-right: 1.5rem;

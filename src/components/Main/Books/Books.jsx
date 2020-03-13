@@ -6,7 +6,6 @@ import { debounce, throttle } from "lodash";
 
 function Books() {
   const [fetching, setFetching] = useState(false);
-  const [loaded, setLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [totalItems, setTotalItems] = useState(0);
   const [booksLoaded, setBooksLoaded] = useState(0); //add 20 books on scroll
@@ -18,7 +17,7 @@ function Books() {
 
   const searchInputChange = debounce(text => {
     setUserInput(text);
-  }, 300);
+  }, 200);
 
   const handleFetchError = response => {
     if (!response.ok) {
@@ -45,14 +44,12 @@ function Books() {
           setItems([]);
           setTotalItems(0);
           setBooksLoaded(0);
-          setLoaded(false);
         } else {
           setErrorMessage("");
           setItems(data.items);
           setTotalItems(data.totalItems);
           setBooksLoaded(20);
           setFetching(false);
-          setLoaded(true);
         }
       })
       .catch(err => {
@@ -119,7 +116,7 @@ function Books() {
       newItems.reverse();
     }
     setItems(newItems);
-  }, [selectValue, items.length, rotateSortIcon]);
+  }, [selectValue, booksLoaded, rotateSortIcon]);
 
   const rotateIconClick = () => {
     setRotateSortIcon(!rotateSortIcon);
@@ -128,7 +125,7 @@ function Books() {
     <section className="books-section">
       <form
         onSubmit={e => e.preventDefault()}
-        style={{ marginTop: loaded ? 50 : 200 }}
+        style={{ marginTop: items.length ? 50 : 200 }}
         className="search-books"
       >
         <input
@@ -139,7 +136,7 @@ function Books() {
           required
         ></input>
         <button
-          type="button"
+          type="submit"
           onClick={searchBtnClick}
           disabled={!userInput || userInput[0] == " "}
           className="btn-search"

@@ -6,16 +6,18 @@ import MyPosts from "./MyPosts/MyPosts";
 import ReadLater from "./ReadLater/ReadLater";
 import Books from "./Books/Books";
 
-import { Route } from "react-router-dom";
+import { Route, Switch, BrowserRouter } from "react-router-dom";
 
 function Main() {
   return (
     <main>
-      <Route path="/home" component={Home} />
-      <Route path="/dialogs" component={Dialogs} />
-      <Route path="/myPosts" component={MyPosts} />
-      <Route path="/readLater" component={ReadLater} />
-      <Route path="/myBooks" component={Books} />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/dialogs" component={Dialogs} />
+        <Route path="/myPosts" component={MyPosts} />
+        <Route path="/readLater" component={ReadLater} />
+        <Route path="/myBooks" component={Books} />
+      </Switch>
     </main>
   );
 }

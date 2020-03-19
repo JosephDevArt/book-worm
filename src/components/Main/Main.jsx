@@ -12,11 +12,11 @@ function Main() {
   return (
     <main>
       <Switch>
-        <Route path="/" exact component={Home} />
+        <Route exact path="/" component={Home} />
         <Route path="/dialogs" component={Dialogs} />
         <Route path="/myPosts" component={MyPosts} />
         <Route path="/readLater" component={ReadLater} />
-        <Route path="/myBooks" component={Books} />
+        <Route path="/Books" component={Books} />
       </Switch>
     </main>
   );

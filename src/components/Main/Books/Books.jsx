@@ -1,25 +1,38 @@
-import React, { useEffect, useState, useCallback } from "react";
-import "./Books.scss";
-import sortIcon from "./iconfinder-icon.svg";
+import React, { useEffect, useState, memo } from "react";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
+// import "./Books.scss";
 import Book from "./Book/Book";
+import TotalAndSort from "./TotalAndSort/TotalAndSort";
 import { debounce, throttle } from "lodash";
-import { connect } from "react-redux";
-import { rotateSortIcon } from "../../../actions/booksActions";
+import {
+  loadBooks,
+  loadBooksOnScroll,
+  setTotalFetchedBooks,
+  setUserInput,
+  setSubmittedInput,
+  setErrorMessage,
+  sortReadLaterBooks
+} from "../../../actions/booksActions";
 function Books(props) {
-  console.log(props);
-  const [fetching, setFetching] = useState(false);
-  const [items, setItems] = useState([]);
-  const [totalItems, setTotalItems] = useState(0);
-  const [booksLoaded, setBooksLoaded] = useState(0); //add 20 books on scroll
-  const [selectValue, setSelectValue] = useState("averageRating");
-  // const [rotateSortIcon, setRotateSortIcon] = useState(false);
-  const [userInput, setUserInput] = useState("");
-  const [initialUserInput, setInitialSearch] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const dispatch = useDispatch();
+  const {
+    books,
+    userInput,
+    submittedInput, //store first userInput so that on scroll appropriate books will be loaded
+    errorMessage,
+    readLaterBooks
+  } = useSelector(
+    state => ({
+      books: state.books,
+      readLaterBooks: state.readLaterBooks,
+      userInput: state.userInput,
+      submittedInput: state.submittedInput,
+      errorMessage: state.errorMessage
+    }),
+    shallowEqual
+  );
 
-  const searchInputChange = debounce(text => {
-    setUserInput(text);
-  }, 200);
+  const [fetching, setFetching] = useState(false);
 
   const handleFetchError = response => {
     if (!response.ok) {
@@ -28,7 +41,7 @@ function Books(props) {
     return response.json(); //we only get here if there is no error
   };
   const handleFetch = (input, startIndex) => {
-    //startIndex equals to booksLoaded
+    //startIndex equals to books.length(so same books won't be loaded)
     return fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${input}&maxResults=20&startIndex=${startIndex}`,
       { method: "GET" }
@@ -36,22 +49,20 @@ function Books(props) {
   };
 
   const searchBtnClick = debounce(() => {
-    setInitialSearch(userInput); //store first userInput so that on scroll appropriate books will be loaded
+    dispatch(setSubmittedInput(userInput)); //store first userInput so that on scroll appropriate books will be loaded
     setFetching(true);
     handleFetch(userInput, 0)
       .then(data => {
         if (data.totalItems === 0) {
-          setErrorMessage("No Books Found.");
           setFetching(false);
-          setItems([]);
-          setTotalItems(0);
-          setBooksLoaded(0);
+          dispatch(setErrorMessage("No Books Found."));
+          dispatch(setTotalFetchedBooks(0));
+          dispatch(loadBooks([]));
         } else {
-          setErrorMessage("");
-          setItems(data.items);
-          setTotalItems(data.totalItems);
-          setBooksLoaded(20);
           setFetching(false);
+          errorMessage && dispatch(setErrorMessage(""));
+          dispatch(setTotalFetchedBooks(data.totalItems));
+          dispatch(loadBooks(data.items));
         }
       })
       .catch(err => {
@@ -61,79 +72,37 @@ function Books(props) {
   }, 200);
   const handleScroll = throttle(() => {
     // Load more books on scroll
-    if (items.length >= 20) {
+    if (books.length >= 20) {
       // If first load < 20 books => prevent load on scroll
       let lastLi = document.querySelector(".books li:last-child");
       let lastLiOffset = lastLi.offsetTop + lastLi.clientHeight;
       let pageOffset = window.pageYOffset + window.innerHeight;
       if (pageOffset > lastLiOffset) {
         setFetching(true);
-        handleFetch(initialUserInput, booksLoaded).then(data => {
-          setBooksLoaded(booksLoaded + 20);
-          setItems([...items, ...data.items]);
+        handleFetch(submittedInput, books.length).then(data => {
+          dispatch(loadBooksOnScroll(data.items)); //load first 20 books + 20 books each time when scrolled to the bottom
           setFetching(false);
         });
       }
     }
-  }, 500);
+  }, 700);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [booksLoaded]);
-
-  const handleChange = e => {
-    setSelectValue(e.target.value);
-  };
-
-  useEffect(() => {
-    //Sorting by selected value
-    let newItems = items.slice();
-    newItems.sort(function(a, b) {
-      //---BELOW---Checking for undefined(if 'selectValue' is missing) => put in the end
-      if (
-        a.volumeInfo[selectValue] == null ||
-        b.volumeInfo[selectValue] == null
-      ) {
-        if (
-          a.volumeInfo[selectValue] == null &&
-          b.volumeInfo[selectValue] == null
-        ) {
-          return 0;
-        } else if (a.volumeInfo[selectValue] == null) {
-          return 1;
-        } else {
-          return -1;
-        }
-      }
-      //---ABOVE---Checking for undefined(if 'selectValue' is missing) => put in the end
-      if (a.volumeInfo[selectValue] < b.volumeInfo[selectValue]) {
-        return 1;
-      } else {
-        return -1;
-      }
-    });
-    // Sort by Descending/Ascending order
-    if (props.sortIconRotated) {
-      newItems.reverse();
-    }
-    setItems(newItems);
-  }, [selectValue, booksLoaded, props.sortIconRotated]);
-
-  // const rotateIconClick = () => {
-  //   setRotateSortIcon(!rotateSortIcon);
-  // };
+  }, [books.length]);
   return (
     <section className="books-section">
       <form
         onSubmit={e => e.preventDefault()}
-        style={{ marginTop: items.length ? 50 : 200 }}
+        style={{ marginTop: books.length ? 50 : 200 }}
         className="search-books"
       >
         <input
           type="text"
+          value={userInput}
           className="input-search-books"
-          onChange={e => searchInputChange(e.target.value)}
+          onChange={e => dispatch(setUserInput(e.target.value))}
           placeholder="Search books..."
           required
         ></input>
@@ -144,45 +113,17 @@ function Books(props) {
           className="btn-search"
         >
           Search {fetching && <i className="fa fa-refresh fa-spin"></i>}
-          {/*Add spinner animation on loading data */}
+          {/*Add spinner animation on loading books */}
         </button>
       </form>
+
       <p className="error-message">{errorMessage}</p>
 
       <div className="search-results">
-        <div className="total-and-sort">
-          <div className="total-books">
-            <p className="total-text">Total</p>
-            <h3 className="num-books">{totalItems} Books</h3>
-          </div>
-          <div className="sort-by">
-            <p className="sort-text">Sort by</p>
-            <div className="sort-options">
-              <object type="image/sbf+xml" data={sortIcon}>
-                <img
-                  onClick={props.rotateSortIcon}
-                  className={`icon-sort ${
-                    props.sortIconRotated ? "rotate" : ""
-                  }`}
-                  src={sortIcon}
-                  alt="sort"
-                />
-              </object>
-              <select
-                value={selectValue}
-                className="sort-select"
-                onChange={handleChange}
-              >
-                <option value="publishedDate">Published date</option>
-                <option value="pageCount">Page Count</option>
-                <option value="averageRating">Rating</option>
-              </select>
-            </div>
-          </div>
-        </div>
+        <TotalAndSort scope="books" />
         <ul className="books">
-          {items.map(item => (
-            <Book key={item.id} items={item} />
+          {books.map(item => (
+            <Book key={item.id} scope="books" book={item} />
           ))}
         </ul>
         <div className="more-content-load-text">
@@ -192,17 +133,4 @@ function Books(props) {
     </section>
   );
 }
-
-const mapStateToProps = state => {
-  return {
-    sortIconRotated: state.sortIconRotated
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    rotateSortIcon: () => dispatch(rotateSortIcon())
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Books);
+export default Books;

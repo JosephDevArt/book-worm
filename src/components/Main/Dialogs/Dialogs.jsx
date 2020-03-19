@@ -1,5 +1,5 @@
 import React from "react";
-import "./dialogs.scss";
+import "./Dialogs.scss";
 import SidebarChats from "./SidebarChats/SidebarChats";
 import Chat from "./Chat/Chat";
 import CurrentChatUser from "./CurrentChatUser/CurrentChatUser";

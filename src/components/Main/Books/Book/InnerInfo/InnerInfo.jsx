@@ -1,6 +1,11 @@
 import React from "react";
-import "./BookInnerInfo.scss";
-function BookInnerInfo(props) {
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import {
+  addToReadLater,
+  removeFromReadLater
+} from "../../../../../actions/booksActions";
+function InnerInfo(props) {
+  console.log(props);
   const {
     title = "no title",
     description = "This book doesn't have a description",
@@ -10,8 +15,9 @@ function BookInnerInfo(props) {
     averageRating,
     publishedDate,
     previewLink
-  } = props.info;
+  } = props.info.volumeInfo;
 
+  const dispatch = useDispatch();
   return (
     <div className="book-info-inner">
       <h3 className="title-inner">{title}</h3>
@@ -41,7 +47,25 @@ function BookInnerInfo(props) {
       </div>
       <p className="description-inner">{description.slice(0, 200)}...</p>
       <div className="book-btns-inner">
-        <button type="button">Read Later</button>
+        {props.scope === "books" ? (
+          <button
+            type="button"
+            onClick={() => dispatch(addToReadLater(props.info))}
+            className="addBtn"
+            title="add to read later"
+          >
+            Read Later
+          </button>
+        ) : (
+          <button
+            title="remove from read later"
+            type="button"
+            className="removeBtn"
+            onClick={() => dispatch(removeFromReadLater(props.info))}
+          >
+            Remove
+          </button>
+        )}
         <a href={previewLink} target="_blank" rel="noopener noreferrer">
           Preview
         </a>
@@ -50,4 +74,4 @@ function BookInnerInfo(props) {
   );
 }
 
-export default BookInnerInfo;
+export default InnerInfo;

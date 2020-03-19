@@ -1,20 +1,19 @@
-import React from "react";
-import BookInnerInfo from "../BookInnerInfo/BookInnerInfo";
-import "./Book.scss";
+import React, { memo } from "react";
+import InnerInfo from "./InnerInfo/InnerInfo";
 import noImg from "./noImg.jpg";
 function Book(props) {
   const {
     title = "no title",
     imageLinks: { smallThumbnail: image } = ""
-  } = props.items.volumeInfo;
+  } = props.book.volumeInfo;
 
   return (
     <li className="book">
-      <BookInnerInfo info={props.items.volumeInfo} getName={props.getName} />
+      <InnerInfo scope={props.scope} info={props.book} />
       <img src={image ? image : noImg} alt="Book" />
       <p className="title-outer">{title}</p>
     </li>
   );
 }
 
-export default Book;
+export default memo(Book);

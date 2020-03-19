@@ -4,7 +4,7 @@
   max-width: 280px;
 
   .title-outer {
-    color: rgb(60, 60, 60);
+    color: $black-text;
     font-size: 0.9rem;
   }
   img {
@@ -16,11 +16,11 @@
       display: none;
     }
     .book-info-inner {
-      display: flex;
+      @include flexbox();
       height: 115%;
       transform: translate(-5%, -5%);
       width: 115%;
-      background-color: rgb(66, 66, 66);
+      background-color: $gray-dark;
     }
     img {
       opacity: 0;

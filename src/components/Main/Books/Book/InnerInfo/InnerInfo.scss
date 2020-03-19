@@ -15,26 +15,26 @@
     margin-top: 8px;
   }
   .category-and-rate-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flexbox();
+    @include justify-content(space-between);
+    @include align-items(center);
     margin-top: 8px;
     .category-inner {
       font-size: 1rem;
     }
     .rate-inner {
-      color: rgb(240, 240, 240);
+      color: $almost-white;
       font-size: 0.8rem;
     }
   }
   .title-inner,
   .category-inner {
-    color: rgb(240, 240, 240);
+    color: $almost-white;
     text-transform: capitalize;
   }
   .pages-and-year-inner {
-    display: flex;
-    justify-content: space-between;
+    @include flexbox();
+    @include justify-content(space-between);
     i {
       margin-right: 5px;
     }
@@ -47,21 +47,35 @@
     overflow: hidden;
   }
   .book-btns-inner {
-    display: flex;
-    justify-content: space-between;
+    @include flexbox();
+    @include justify-content(space-between);
+    padding-top: 1rem;
     margin-top: auto; //push buttons to the bottom
-    button,
+    .addBtn,
+    .removeBtn,
     a {
+      border: 1px solid white;
       padding: 0.4rem 0.8rem;
       font-size: 0.9rem;
-      color: rgb(240, 240, 240);
-      background: none;
-      border: 1px solid white;
       font-weight: bold;
+      background: none;
+      cursor: pointer;
+    }
+    a,
+    .addBtn {
+      color: $almost-white;
+      border: 1px solid $almost-white;
       &:hover {
-        background-color: rgb(240, 240, 240);
-        cursor: pointer;
-        color: rgb(30, 30, 30);
+        background-color: $almost-white;
+        color: $black-text;
+      }
+    }
+    .removeBtn {
+      color: rgb(255, 65, 65);
+      &:hover {
+        background-color: rgb(255, 65, 65);
+        color: $almost-white;
+        border-color: rgb(255, 65, 65);
       }
     }
   }

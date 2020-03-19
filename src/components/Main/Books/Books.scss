@@ -6,12 +6,13 @@
 
   .search-books {
     transition: 1s ease;
-    display: flex;
-    justify-content: center;
+    @include flexbox();
+    @include justify-content(center);
     .input-search-books {
       padding: 0.8rem 0.8rem;
+      color: $black-text;
       width: 400px;
-      border: 1px solid rgb(176, 0, 208);
+      border: 1px solid $primary-purple;
       font-size: 1.2rem;
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
@@ -19,14 +20,14 @@
     .btn-search {
       padding: 0.8rem 0.8rem;
       border: none;
-      background-color: rgb(176, 0, 208);
+      background-color: $primary-purple;
       color: white;
       font-size: 1.2rem;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
       cursor: pointer;
       &:hover {
-        background-color: rgb(161, 0, 189);
+        background-color: $primary-purple-hover;
       }
     }
   }
@@ -34,16 +35,16 @@
     text-align: center;
     font-size: 2rem;
     margin: 2rem;
-    color: rgb(66, 66, 66);
+    color: $gray-dark;
     text-transform: capitalize;
     font-weight: bold;
   }
 
   .total-and-sort {
     margin: 2rem 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flexbox();
+    @include justify-content(space-between);
+    @include align-items(center);
     .total-text,
     .sort-text {
       font-size: 1.5rem;
@@ -58,13 +59,12 @@
     }
     .num-books {
       font-size: 2.2rem;
-      color: rgb(66, 66, 66);
+      color: $gray-dark;
     }
     .sort-by {
       .sort-options {
-        display: flex;
-        justify-content: space-between;
-
+        @include flexbox();
+        @include justify-content(space-between);
         .rotate {
           transform: rotateY(-180deg);
         }
@@ -73,14 +73,14 @@
           width: 55px;
           padding: 0.3rem;
           display: flex;
-          background-color: rgb(66, 66, 66);
+          background-color: $gray-dark;
           transition: 0.5s ease;
         }
         .sort-select {
           font-size: 1.6rem;
           padding: 0.2rem 0.6rem;
-          background-color: rgb(66, 66, 66);
-          color: rgb(240, 240, 240);
+          background-color: $gray-dark;
+          color: $almost-white;
           border: none;
           margin-left: 2px;
         }

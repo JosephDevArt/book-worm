@@ -1,13 +1,15 @@
-import React, { memo } from "react";
+import React from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { useEffect } from "react";
 import sortIcon from "../iconfinder-icon.svg";
 import {
-  rotateSortIcon,
-  setSelectValue,
   loadBooks,
   sortReadLaterBooks
 } from "./../../../../actions/booksActions";
+import {
+  rotateSortIcon,
+  setSelectValue
+} from "./../../../../actions/sortActions";
 
 const TotalAndSort = ({ scope }) => {
   const dispatch = useDispatch();
@@ -19,11 +21,11 @@ const TotalAndSort = ({ scope }) => {
     totalFetchedBooks
   } = useSelector(
     state => ({
-      readLaterBooks: state.readLaterBooks,
-      selectedValue: state.selectedValue,
-      sortIconRotated: state.sortIconRotated,
-      books: state.books,
-      totalFetchedBooks: state.totalFetchedBooks
+      readLaterBooks: state.booksReducer.readLaterBooks,
+      selectedValue: state.sortReducer.selectedValue,
+      sortIconRotated: state.sortReducer.sortIconRotated,
+      books: state.booksReducer.books,
+      totalFetchedBooks: state.booksReducer.totalFetchedBooks
     }),
     shallowEqual
   );
@@ -98,4 +100,4 @@ const TotalAndSort = ({ scope }) => {
   );
 };
 
-export default memo(TotalAndSort);
+export default TotalAndSort;

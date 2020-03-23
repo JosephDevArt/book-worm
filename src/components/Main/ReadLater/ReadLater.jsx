@@ -1,12 +1,11 @@
 import React from "react";
-import "./ReadLater.scss";
 import Book from "../Books/Book/Book";
 import TotalAndSort from "../Books/TotalAndSort/TotalAndSort";
 import { useSelector, shallowEqual } from "react-redux";
 function ReadLater(props) {
   const { readLaterBooks } = useSelector(
     state => ({
-      readLaterBooks: state.readLaterBooks
+      readLaterBooks: state.booksReducer.readLaterBooks
     }),
     shallowEqual
   );

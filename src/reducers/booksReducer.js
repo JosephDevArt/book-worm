@@ -5,11 +5,11 @@ import {
   LOAD_BOOKS,
   LOAD_BOOKS_ON_SCROLL,
   SET_TOTAL_FETCHED_BOOKS,
-  SET_USER_INPUT,
   SET_SUBMITTED_INPUT,
   SET_ERROR_MESSAGE,
   SORT_READ_LATER_BOOKS,
-  REMOVE_FROM_READ_LATER
+  REMOVE_FROM_READ_LATER,
+  SET_IS_FETCHING
 } from "../actions/actionTypes";
 const initialState = {
   userInput: "",
@@ -19,17 +19,16 @@ const initialState = {
   books: [],
   totalFetchedBooks: 0,
   errorMessage: "",
-  readLaterBooks: []
+  readLaterBooks: [],
+  isFetching: false
 };
 
 const booksReducer = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case ROTATE_SORT_ICON:
       return {
         ...state,
-        sortIconRotated: !state.sortIconRotated,
-        readLaterAmount: state.readLaterAmount + 1
+        sortIconRotated: !state.sortIconRotated
       };
     case SET_SELECT_VALUE: {
       return {
@@ -45,26 +44,15 @@ const booksReducer = (state = initialState, action) => {
       };
     }
     case LOAD_BOOKS_ON_SCROLL: {
-      //function BELOW prevents loading book that has been loaded already
-      let filtered = action.newBooks.filter(item =>
-        state.books.every(book => book.id != item.id)
-      );
-      //function ABOVE prevents loading book that has been loaded already
       return {
         ...state,
-        books: [...state.books, ...filtered]
+        books: [...state.books, ...action.newBooks]
       };
     }
     case SET_TOTAL_FETCHED_BOOKS: {
       return {
         ...state,
         totalFetchedBooks: action.totalFetchedBooks
-      };
-    }
-    case SET_USER_INPUT: {
-      return {
-        ...state,
-        userInput: action.input
       };
     }
     case SET_SUBMITTED_INPUT: {
@@ -105,6 +93,13 @@ const booksReducer = (state = initialState, action) => {
         readLaterBooks: [...action.sortedBooks]
       };
     }
+    case SET_IS_FETCHING: {
+      return {
+        ...state,
+        isFetching: action.bool
+      };
+    }
+
     default:
       return state;
   }

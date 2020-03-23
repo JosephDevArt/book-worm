@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import {
   addToReadLater,
   removeFromReadLater
 } from "../../../../../actions/booksActions";
 function InnerInfo(props) {
-  console.log(props);
   const {
     title = "no title",
     description = "This book doesn't have a description",
@@ -16,7 +15,6 @@ function InnerInfo(props) {
     publishedDate,
     previewLink
   } = props.info.volumeInfo;
-
   const dispatch = useDispatch();
   return (
     <div className="book-info-inner">
@@ -51,7 +49,7 @@ function InnerInfo(props) {
           <button
             type="button"
             onClick={() => dispatch(addToReadLater(props.info))}
-            className="addBtn"
+            className="btn-add"
             title="add to read later"
           >
             Read Later
@@ -60,13 +58,18 @@ function InnerInfo(props) {
           <button
             title="remove from read later"
             type="button"
-            className="removeBtn"
+            className="btn-remove"
             onClick={() => dispatch(removeFromReadLater(props.info))}
           >
             Remove
           </button>
         )}
-        <a href={previewLink} target="_blank" rel="noopener noreferrer">
+        <a
+          className="btn-preview"
+          href={previewLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Preview
         </a>
       </div>

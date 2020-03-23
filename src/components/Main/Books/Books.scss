@@ -1,9 +1,5 @@
 .books-section {
-  width: 90%;
-  height: 100%;
-  margin: 2rem auto;
-  position: relative;
-
+  @include section-inside-main;
   .search-books {
     transition: 1s ease;
     @include flexbox();
@@ -38,54 +34,6 @@
     color: $gray-dark;
     text-transform: capitalize;
     font-weight: bold;
-  }
-
-  .total-and-sort {
-    margin: 2rem 0;
-    @include flexbox();
-    @include justify-content(space-between);
-    @include align-items(center);
-    .total-text,
-    .sort-text {
-      font-size: 1.5rem;
-      opacity: 0.7;
-      margin-bottom: 8px;
-    }
-    .total-text {
-      text-align: left;
-    }
-    .sort-text {
-      text-align: right;
-    }
-    .num-books {
-      font-size: 2.2rem;
-      color: $gray-dark;
-    }
-    .sort-by {
-      .sort-options {
-        @include flexbox();
-        @include justify-content(space-between);
-        .rotate {
-          transform: rotateY(-180deg);
-        }
-        .icon-sort {
-          border: none;
-          width: 55px;
-          padding: 0.3rem;
-          display: flex;
-          background-color: $gray-dark;
-          transition: 0.5s ease;
-        }
-        .sort-select {
-          font-size: 1.6rem;
-          padding: 0.2rem 0.6rem;
-          background-color: $gray-dark;
-          color: $almost-white;
-          border: none;
-          margin-left: 2px;
-        }
-      }
-    }
   }
 }
 

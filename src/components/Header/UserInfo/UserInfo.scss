@@ -1,16 +1,18 @@
 .user_account {
   display: grid;
+
   grid-template-areas:
     ". img ."
     "name img ."
     ". img logout";
-  width: 200px;
+
+  grid-gap: 0.4rem;
+  align-items: center;
 }
 .user_account img {
   grid-area: img;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   border: 1px solid rgb(255, 0, 255);
   border-radius: 50%;
 }
@@ -23,6 +25,15 @@
 
 .logout_icon {
   grid-area: logout;
-  color: rgb(181, 181, 181);
+  color: rgb(101, 101, 101);
+  background: none;
+  border: none;
+  font-size: 1rem;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  i {
+    margin-left: 5px;
+  }
+  font-family: "Montserrat";
 }

@@ -1,13 +1,10 @@
 import {
-  SET_SUBMITTED_INPUT,
-  SORT_READ_LATER_BOOKS,
   LOAD_BOOKS,
   LOAD_BOOKS_ON_SCROLL,
   SET_TOTAL_FETCHED_BOOKS,
   SET_ERROR_MESSAGE,
-  ADD_TO_READ_LATER,
-  REMOVE_FROM_READ_LATER,
-  SET_IS_FETCHING
+  SET_IS_FETCHING,
+  SET_SUBMITTED_INPUT
 } from "./actionTypes";
 
 import { handleFetch } from "./api";
@@ -47,27 +44,6 @@ export const loadBooksOnScroll = newBooks => {
   };
 };
 
-export const addToReadLater = addedBook => {
-  return {
-    type: ADD_TO_READ_LATER,
-    addedBook
-  };
-};
-
-export const removeFromReadLater = removedBook => {
-  return {
-    type: REMOVE_FROM_READ_LATER,
-    removedBook
-  };
-};
-
-export const sortReadLaterBooks = sortedBooks => {
-  return {
-    type: SORT_READ_LATER_BOOKS,
-    sortedBooks
-  };
-};
-
 export const setIsFetching = bool => {
   return {
     type: SET_IS_FETCHING,
@@ -83,7 +59,7 @@ export const getBooks = userInput => {
   }
   return (dispatch, getState) => {
     const { errorMessage } = getState().booksReducer;
-    dispatch(setSubmittedInput(userInput)); //store first userInput so that on scroll appropriate books will be loaded
+    dispatch(setSubmittedInput(userInput));
     dispatch(setIsFetching(true));
     handleFetch(userInput, 0)
       .then(data => {
@@ -106,7 +82,7 @@ export const getBooks = userInput => {
   };
 };
 
-export const getBooksOnScroll = (books, submittedInput) => {
+export const getBooksOnScroll = (books, userInput) => {
   return (dispatch, getState) => {
     const { isFetching } = getState().booksReducer;
     if (isFetching || books.length < 20) {
@@ -124,7 +100,7 @@ export const getBooksOnScroll = (books, submittedInput) => {
     if (pageOffset > lastLiOffset) {
       //---ABOVE--- check if last book at the bottom of the page
       dispatch(setIsFetching(true));
-      handleFetch(submittedInput, books.length).then(data => {
+      handleFetch(userInput, books.length).then(data => {
         dispatch(loadBooksOnScroll(data.items)); //load first 20 books + 20 books each time when scrolled to the bottom
         dispatch(setIsFetching(false));
       });

@@ -1,17 +1,15 @@
-import React from "react";
+import React, { memo } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import sortIcon from "../iconfinder-icon.svg";
-import {
-  loadBooks,
-  sortReadLaterBooks
-} from "./../../../../actions/booksActions";
+import { loadBooks } from "./../../../../actions/booksActions";
+import { loadReadLaterBooks } from "./../../../../actions/readLaterActions";
 import {
   rotateSortIcon,
   setSelectValue
 } from "./../../../../actions/sortActions";
-
 const TotalAndSort = ({ scope }) => {
+  console.log("total and sort");
   const dispatch = useDispatch();
   const {
     selectedValue,
@@ -21,7 +19,7 @@ const TotalAndSort = ({ scope }) => {
     totalFetchedBooks
   } = useSelector(
     state => ({
-      readLaterBooks: state.booksReducer.readLaterBooks,
+      readLaterBooks: state.readLaterReducer.readLaterBooks,
       selectedValue: state.sortReducer.selectedValue,
       sortIconRotated: state.sortReducer.sortIconRotated,
       books: state.booksReducer.books,
@@ -30,8 +28,10 @@ const TotalAndSort = ({ scope }) => {
     shallowEqual
   );
   useEffect(() => {
+    console.log("useEffect");
     //Sorting by selected value(scope is where this component is rendered(books-section or readLater-section))
     if (scope === "books" ? books.length : readLaterBooks.length) {
+      console.log("sort");
       let newItems = scope === "books" ? books.slice() : readLaterBooks.slice();
       newItems.sort(function(a, b) {
         //---BELOW---Checking for undefined(if 'selectedValue' is missing) => put in the end
@@ -63,7 +63,7 @@ const TotalAndSort = ({ scope }) => {
       }
       scope === "books"
         ? dispatch(loadBooks(newItems))
-        : dispatch(sortReadLaterBooks(newItems));
+        : dispatch(loadReadLaterBooks(newItems));
     }
   }, [selectedValue, books.length, sortIconRotated]);
   return (

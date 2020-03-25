@@ -5,7 +5,7 @@ import { useSelector, shallowEqual } from "react-redux";
 function ReadLater(props) {
   const { readLaterBooks } = useSelector(
     state => ({
-      readLaterBooks: state.booksReducer.readLaterBooks
+      readLaterBooks: state.readLaterReducer.readLaterBooks
     }),
     shallowEqual
   );

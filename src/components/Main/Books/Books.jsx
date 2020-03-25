@@ -4,19 +4,15 @@ import Book from "./Book/Book";
 import TotalAndSort from "./TotalAndSort/TotalAndSort";
 import { throttle } from "lodash";
 import { getBooks, getBooksOnScroll } from "../../../actions/booksActions";
-function Books() {
+
+function Books(props) {
   const dispatch = useDispatch();
-  const {
-    books,
-    submittedInput, //store userInput so that on scroll appropriate books will be loaded
-    errorMessage,
-    isFetching
-  } = useSelector(
+  const { books, errorMessage, isFetching, submittedInput } = useSelector(
     state => ({
       books: state.booksReducer.books,
-      submittedInput: state.booksReducer.submittedInput,
       errorMessage: state.booksReducer.errorMessage,
-      isFetching: state.booksReducer.isFetching
+      isFetching: state.booksReducer.isFetching,
+      submittedInput: state.booksReducer.submittedInput
     }),
     shallowEqual
   );
@@ -31,7 +27,9 @@ function Books() {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [books.length]);
 
   return (

@@ -4,6 +4,7 @@ const handleFetchError = response => {
   }
   return response.json();
 };
+
 export const handleFetch = (input, startIndex) => {
   //startIndex equals to books.length(so that same books won't be loaded)
   return fetch(

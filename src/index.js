@@ -8,10 +8,12 @@ import { Provider } from "react-redux";
 import thunkMiddleware from "redux-thunk";
 import booksReducer from "./reducers/booksReducer";
 import sortReducer from "./reducers/sortReducer";
+import readLaterReducer from "./reducers/readLaterReducer";
 
 const rootRedcuer = combineReducers({
   booksReducer: booksReducer,
-  sortReducer: sortReducer
+  sortReducer: sortReducer,
+  readLaterReducer: readLaterReducer
 });
 
 const store = createStore(

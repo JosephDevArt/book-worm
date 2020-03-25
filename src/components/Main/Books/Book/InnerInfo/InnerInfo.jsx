@@ -3,7 +3,7 @@ import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import {
   addToReadLater,
   removeFromReadLater
-} from "../../../../../actions/booksActions";
+} from "../../../../../actions/readLaterActions";
 function InnerInfo(props) {
   const {
     title = "no title",
@@ -16,6 +16,10 @@ function InnerInfo(props) {
     previewLink
   } = props.info.volumeInfo;
   const dispatch = useDispatch();
+  const [loggedIn, setLoggedIn] = useState(false);
+  const buttonClick = () => {
+    console.log("log in ");
+  };
   return (
     <div className="book-info-inner">
       <h3 className="title-inner">{title}</h3>
@@ -48,7 +52,11 @@ function InnerInfo(props) {
         {props.scope === "books" ? (
           <button
             type="button"
-            onClick={() => dispatch(addToReadLater(props.info))}
+            onClick={
+              loggedIn
+                ? () => dispatch(addToReadLater(props.info))
+                : buttonClick
+            }
             className="btn-add"
             title="add to read later"
           >

@@ -5,6 +5,7 @@ import {
   removeFromReadLater
 } from "../../../../../actions/readLaterActions";
 function InnerInfo(props) {
+  const isAuthorized = useSelector(state => state.userReducer.isAuthorized);
   const {
     title = "no title",
     description = "This book doesn't have a description",
@@ -15,9 +16,12 @@ function InnerInfo(props) {
     publishedDate,
     previewLink
   } = props.info.volumeInfo;
+  const [active, setActive] = useState(false);
+
   const dispatch = useDispatch();
-  const [loggedIn, setLoggedIn] = useState(false);
+
   const buttonClick = () => {
+    setActive(true);
     console.log("log in ");
   };
   return (
@@ -42,8 +46,8 @@ function InnerInfo(props) {
           <i className="far fa-file"></i>
           {pageCount} pages.
         </p>
-        {/* slicing to extract 'year' only */}
         <p className="year-inner">
+          {/* slicing to extract 'year' only */}
           {publishedDate ? `${publishedDate.slice(0, 4)}` : "unknown"} year.
         </p>
       </div>
@@ -53,11 +57,14 @@ function InnerInfo(props) {
           <button
             type="button"
             onClick={
-              loggedIn
+              isAuthorized
                 ? () => dispatch(addToReadLater(props.info))
                 : buttonClick
             }
-            className="btn-add"
+            className={`btn-add ${
+              //add warning ('log in to add') if not Authorized and clicked on Read Later btn
+              isAuthorized ? null : active ? "log-in-warning" : null
+            }`}
             title="add to read later"
           >
             Read Later

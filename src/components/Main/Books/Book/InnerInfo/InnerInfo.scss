@@ -82,6 +82,9 @@
       transition: 0.5s;
       background-size: 300%;
       background-position: 100%;
+      &:focus {
+        outline: none;
+      }
       &:after {
         content: "";
         position: absolute;
@@ -94,6 +97,7 @@
         background-size: 300%;
         background-position: 100%;
       }
+
       &:hover {
         background-position: 0;
         border-color: rgba(0, 0, 0, 0);
@@ -102,5 +106,20 @@
         background-position: 0;
       }
     }
+  }
+}
+
+.log-in-warning {
+  //add warning on readLaterBtn click => log in to add
+  &:before {
+    transition: 2s;
+    content: "Log in to add";
+    position: absolute;
+    top: -20px;
+    right: 0;
+    background: #ffb74b;
+    font-family: "Montserrat";
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }

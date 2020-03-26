@@ -3,9 +3,10 @@ import Book from "../Books/Book/Book";
 import TotalAndSort from "../Books/TotalAndSort/TotalAndSort";
 import { useSelector, shallowEqual } from "react-redux";
 function ReadLater(props) {
-  const { readLaterBooks } = useSelector(
+  const { readLaterBooks, isAuthorized } = useSelector(
     state => ({
-      readLaterBooks: state.readLaterReducer.readLaterBooks
+      readLaterBooks: state.readLaterReducer.readLaterBooks,
+      isAuthorized: state.userReducer.isAuthorized
     }),
     shallowEqual
   );

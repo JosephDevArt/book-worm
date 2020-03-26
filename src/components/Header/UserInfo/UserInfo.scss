@@ -1,11 +1,9 @@
 .user_account {
   display: grid;
-
   grid-template-areas:
     ". img ."
     "name img ."
     ". img logout";
-
   grid-gap: 0.4rem;
   align-items: center;
 }
@@ -17,13 +15,28 @@
   border-radius: 50%;
 }
 
+//When waiting for authorization response => spin defaultUserImage
+
+.animate-spin {
+  animation: spin 1.5s infinite ease;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .user_name {
   color: rgb(101, 101, 101);
   text-shadow: 1px 1px 2px rgb(211, 211, 211);
   grid-area: name;
 }
 
-.logout_icon {
+.login-button,
+.logout-button {
   grid-area: logout;
   color: rgb(101, 101, 101);
   background: none;
@@ -32,8 +45,5 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  i {
-    margin-left: 5px;
-  }
   font-family: "Montserrat";
 }

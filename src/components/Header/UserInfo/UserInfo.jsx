@@ -1,70 +1,75 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import defaultUserImg from "./default-user-icon.jpg";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+import { setIsAuthorized } from "./../../../actions/userActions";
+import { useDispatch, useSelector } from "react-redux";
+import { loadReadLaterBooks } from "./../../../actions/readLaterActions";
 
-class UserInfo extends React.Component {
-  state = {
-    isLoggedIn: false,
-    userId: "",
-    name: "",
-    picture: ""
+const UserInfo = props => {
+  const dispatch = useDispatch();
+
+  const [userName, setUserName] = useState("");
+  const [userImg, setUserImg] = useState("");
+  const [isAuthorizing, setIsAuthorizing] = useState(false);
+
+  const isAuthorized = useSelector(state => state.userReducer.isAuthorized);
+
+  const logIn = () => {
+    //waiting for facebook response
+    setIsAuthorizing(true);
   };
-  responseFacebook = response => {
-    console.log(response);
-    this.setState(state => ({
-      isLoggedIn: true,
-      userID: response.userId,
-      name: response.name,
-      picture: response.picture.data.url,
-      accessToken: state.accessToken
-    }));
+
+  const responseFacebook = response => {
+    //received response
+    setUserName(response.name);
+    setUserImg(response.picture.data.url);
+    setIsAuthorizing(false);
+    dispatch(setIsAuthorized(true));
   };
-  componentClicked = () => {
-    console.log("clicked");
+
+  const logOut = () => {
+    dispatch(setIsAuthorized(false));
+    dispatch(loadReadLaterBooks([]));
   };
-  handleClick = () => {
-    this.setState({
-      isLoggedIn: false,
-      accessToken: ""
-    });
-  };
-  render() {
-    console.log(this.state.isLoggedIn);
-    let fbContent;
-    if (this.state.isLoggedIn) {
-      fbContent = (
-        <div className="user_account">
-          <p className="user_name">{this.state.name}</p>
-          <img src={this.state.picture} alt="user" />
-          <button className="logout_icon" onClick={this.handleClick}>
-            <i className="fas fa-sign-out-alt logout_icon"></i>
-            <span>Log out</span>
-          </button>
-        </div>
-      );
-    } else {
-      fbContent = (
-        <div className="user_account">
-          <p className="user_name">Welcome to Book worm</p>
-          <img src={defaultUserImg} alt="user" />
-          <FacebookLogin
-            appId="671544383656359"
-            autoLoad={false}
-            fields="name,picture"
-            onClick={this.componentClicked}
-            callback={this.responseFacebook}
-            render={renderProps => (
-              <button className="logout_icon" onClick={renderProps.onClick}>
-                <span>Log in</span>
-                <i className="fas fa-sign-in-alt logout_icon"></i>
-              </button>
-            )}
-          />
-        </div>
-      );
-    }
-    return <div>{fbContent}</div>;
+
+  let info;
+  if (isAuthorized) {
+    info = (
+      <div className="user_account">
+        <p className="user_name">{userName}</p>
+        <img src={userImg} alt="user" />
+        <button className="logout-button" onClick={logOut}>
+          <i className="fas fa-sign-out-alt"></i>
+          <span>Log out</span>
+        </button>
+      </div>
+    );
+  } else {
+    info = (
+      <div className="user_account">
+        <p className="user_name">Welcome to Book worm</p>
+        <img
+          src={defaultUserImg}
+          className={isAuthorizing ? "animate-spin" : null}
+          alt="user"
+        />
+        <FacebookLogin
+          appId="671544383656359"
+          autoLoad={false}
+          fields="name,picture"
+          onClick={logIn}
+          callback={responseFacebook}
+          render={renderProps => (
+            <button className="login-button" onClick={renderProps.onClick}>
+              <i className="fas fa-sign-in-alt"></i>
+              <span>Log in</span>
+            </button>
+          )}
+        />
+      </div>
+    );
   }
-}
+  return <div>{info}</div>;
+};
 
 export default UserInfo;

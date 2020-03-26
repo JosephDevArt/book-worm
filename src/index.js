@@ -9,11 +9,13 @@ import thunkMiddleware from "redux-thunk";
 import booksReducer from "./reducers/booksReducer";
 import sortReducer from "./reducers/sortReducer";
 import readLaterReducer from "./reducers/readLaterReducer";
+import userReducer from "./reducers/userReducer";
 
 const rootRedcuer = combineReducers({
   booksReducer: booksReducer,
   sortReducer: sortReducer,
-  readLaterReducer: readLaterReducer
+  readLaterReducer: readLaterReducer,
+  userReducer: userReducer
 });
 
 const store = createStore(

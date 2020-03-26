@@ -23,9 +23,24 @@ nav a {
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
   i {
-    color: #e000fe;
+    color: $primary-purple;
   }
   .link_text {
-    color: #2f2f2f;
+    color: $black-text;
   }
+  .counter {
+    background-color: $primary-purple;
+    color: white;
+  }
+}
+
+.counter {
+  color: $primary-purple;
+  align-self: flex-end;
+  margin-left: 1rem;
+  background-color: rgb(255, 255, 255);
+  width: 35px;
+  text-align: center;
+  height: 20px;
+  border-radius: 4px;
 }

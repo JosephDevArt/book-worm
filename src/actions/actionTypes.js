@@ -1,5 +1,15 @@
+//---- HEADER ----
+
 export const SET_IS_AUTHORIZED = "SET_IS_AUTHORIZED";
 
+export const SET_FOLLOWING_USERS = "SET_FOLLOWING_USERS";
+//---- HOME ----
+
+export const LOAD_USERS = "LOAD_USERS";
+
+export const FOLLOW_USER = "FOLLOW_USER";
+
+export const UNFOLLOW_USER = "UNFOLLOW_USER";
 //---- BOOKS  ----
 
 export const SET_SUBMITTED_INPUT = "SET_SUBMITTED_INPUT";
@@ -27,3 +37,6 @@ export const ADD_TO_READ_LATER = "ADD_TO_READ_LATER";
 export const REMOVE_FROM_READ_LATER = "REMOVE_FROM_READ_LATER";
 
 export const LOAD_READ_LATER_BOOKS = "LOAD_READ_LATER_BOOKS";
+
+//---- POSTS ----
+export const LOAD_POSTS = "LOAD_POSTS";

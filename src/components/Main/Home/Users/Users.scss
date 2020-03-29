@@ -1,0 +1,15 @@
+.users {
+  @include home-grid-box();
+  @include flexbox();
+  @include flex-direction(column);
+  grid-area: users;
+  border-radius: 4px;
+  &:before {
+    @include home-text-above-box("Users");
+  }
+  h1 {
+    color: $black-text;
+    padding: 1.6rem;
+    border-bottom: 1px solid $border-gray-light;
+  }
+}

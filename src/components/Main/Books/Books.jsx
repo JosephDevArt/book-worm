@@ -4,6 +4,7 @@ import Book from "./Book/Book";
 import TotalAndSort from "./TotalAndSort/TotalAndSort";
 import { throttle } from "lodash";
 import { getBooks, getBooksOnScroll } from "../../../actions/booksActions";
+import { useRef } from "react";
 
 function Books(props) {
   const dispatch = useDispatch();
@@ -16,10 +17,12 @@ function Books(props) {
     }),
     shallowEqual
   );
+  const inputEl = useRef(null);
 
-  const searchBtnClick = userInput => {
-    dispatch(getBooks(userInput));
+  const searchBtnClick = () => {
+    dispatch(getBooks(inputEl.current.value));
   };
+
   const handleScroll = throttle(() => {
     // Load more books on scroll
     dispatch(getBooksOnScroll(books, submittedInput));
@@ -44,10 +47,11 @@ function Books(props) {
           className="input-search-books"
           placeholder="Search books..."
           // required
+          ref={inputEl} //extract user input
         ></input>
         <button
           type="submit"
-          onClick={e => searchBtnClick(e.target.form.elements[0].value)} //extract user input
+          onClick={searchBtnClick}
           disabled={isFetching ? true : false}
           className="btn-search"
         >

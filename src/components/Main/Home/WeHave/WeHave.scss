@@ -1,0 +1,53 @@
+.we-have {
+  grid-area: we-have;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  &:before {
+    content: "We have";
+    position: absolute;
+    font-weight: bold;
+    top: -1.8rem;
+    color: $black-text;
+    left: 0;
+  }
+
+  .fa-book {
+    color: $primary-purple;
+  }
+  .fa-users {
+    color: rgb(66, 107, 255);
+  }
+  .fa-money-bill-wave-alt {
+    color: rgb(49, 169, 49);
+  }
+  .fa-building {
+    color: #ffb95e;
+  }
+
+  & > div {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 3px 10px 2px rgb(223, 223, 223);
+    width: 180px;
+    padding: 0.6rem 1.2rem;
+    margin-left: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    span {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: $black-text;
+    }
+    .icon-and-name {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.4rem;
+      color: $gray-dark;
+    }
+  }
+  & div:first-child {
+    margin: 0;
+  }
+}

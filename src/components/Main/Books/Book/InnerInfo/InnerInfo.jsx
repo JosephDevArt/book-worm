@@ -22,7 +22,6 @@ function InnerInfo(props) {
 
   const buttonClick = () => {
     setActive(true);
-    console.log("log in ");
   };
   return (
     <div className="book-info-inner">

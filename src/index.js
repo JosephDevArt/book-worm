@@ -10,12 +10,16 @@ import booksReducer from "./reducers/booksReducer";
 import sortReducer from "./reducers/sortReducer";
 import readLaterReducer from "./reducers/readLaterReducer";
 import userReducer from "./reducers/userReducer";
+import homeReducer from "./reducers/homeReducer";
+import postReducer from "./reducers/postsReducer";
 
 const rootRedcuer = combineReducers({
   booksReducer: booksReducer,
   sortReducer: sortReducer,
   readLaterReducer: readLaterReducer,
-  userReducer: userReducer
+  userReducer: userReducer,
+  homeReducer: homeReducer,
+  postsReducer: postReducer
 });
 
 const store = createStore(

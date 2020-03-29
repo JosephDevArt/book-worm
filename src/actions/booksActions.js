@@ -8,6 +8,7 @@ import {
 } from "./actionTypes";
 
 import { handleFetch } from "./api";
+import { batch } from "react-redux";
 
 export const setSubmittedInput = submittedInput => {
   return {
@@ -59,20 +60,26 @@ export const getBooks = userInput => {
   }
   return (dispatch, getState) => {
     const { errorMessage } = getState().booksReducer;
-    dispatch(setSubmittedInput(userInput));
-    dispatch(setIsFetching(true));
+    batch(() => {
+      dispatch(setSubmittedInput(userInput));
+      dispatch(setIsFetching(true));
+    });
     handleFetch(userInput, 0)
       .then(data => {
         if (data.totalItems === 0) {
-          dispatch(setIsFetching(false));
-          dispatch(setErrorMessage("No Books Found."));
-          dispatch(setTotalFetchedBooks(0));
-          dispatch(loadBooks([]));
+          batch(() => {
+            dispatch(setIsFetching(false));
+            dispatch(setErrorMessage("No Books Found."));
+            dispatch(setTotalFetchedBooks(0));
+            dispatch(loadBooks([]));
+          });
         } else {
-          errorMessage && dispatch(setErrorMessage(""));
-          dispatch(setTotalFetchedBooks(data.totalItems));
-          dispatch(loadBooks(data.items));
-          dispatch(setIsFetching(false));
+          batch(() => {
+            errorMessage && dispatch(setErrorMessage(""));
+            dispatch(setTotalFetchedBooks(data.totalItems));
+            dispatch(loadBooks(data.items));
+            dispatch(setIsFetching(false));
+          });
         }
       })
       .catch(err => {
@@ -101,8 +108,10 @@ export const getBooksOnScroll = (books, userInput) => {
       //---ABOVE--- check if last book at the bottom of the page
       dispatch(setIsFetching(true));
       handleFetch(userInput, books.length).then(data => {
-        dispatch(loadBooksOnScroll(data.items)); //load first 20 books + 20 books each time when scrolled to the bottom
-        dispatch(setIsFetching(false));
+        batch(() => {
+          dispatch(loadBooksOnScroll(data.items)); //load first 20 books + 20 books each time when scrolled to the bottom
+          dispatch(setIsFetching(false));
+        });
       });
     }
   };

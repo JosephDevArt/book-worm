@@ -4,6 +4,7 @@ import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props
 import { setIsAuthorized } from "./../../../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import { loadReadLaterBooks } from "./../../../actions/readLaterActions";
+import { loadUsers, setFollowingUsers } from "./../../../actions/homeActions";
 
 const UserInfo = props => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const UserInfo = props => {
   const logOut = () => {
     dispatch(setIsAuthorized(false));
     dispatch(loadReadLaterBooks([]));
+    dispatch(setFollowingUsers([]));
   };
 
   let info;

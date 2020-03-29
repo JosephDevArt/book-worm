@@ -1,0 +1,22 @@
+.posts-box {
+  @include home-grid-box();
+  @include flexbox-all(column, center, center);
+  &:before {
+    @include home-text-above-box("Posts");
+  }
+  border-radius: $home-box-border-radius;
+  padding-top: 0.5rem;
+  .btn-see-more {
+    color: $btn-orange;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    text-align: center;
+    padding: 1.4rem 0;
+    font-size: 1.4rem;
+    font-weight: bold;
+    background-color: white;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+}

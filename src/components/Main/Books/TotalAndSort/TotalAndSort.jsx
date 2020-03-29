@@ -9,7 +9,7 @@ import {
   setSelectValue
 } from "./../../../../actions/sortActions";
 const TotalAndSort = ({ scope }) => {
-  console.log("total and sort");
+  // console.log("total and sort");
   const dispatch = useDispatch();
   const {
     selectedValue,
@@ -28,10 +28,10 @@ const TotalAndSort = ({ scope }) => {
     shallowEqual
   );
   useEffect(() => {
-    console.log("useEffect");
+    // console.log("useEffect");
     //Sorting by selected value(scope is where this component is rendered(books-section or readLater-section))
     if (scope === "books" ? books.length : readLaterBooks.length) {
-      console.log("sort");
+      // console.log("sort");
       let newItems = scope === "books" ? books.slice() : readLaterBooks.slice();
       newItems.sort(function(a, b) {
         //---BELOW---Checking for undefined(if 'selectedValue' is missing) => put in the end

@@ -1,0 +1,21 @@
+.book-worm {
+  @include home-grid-box();
+  grid-area: book-worm;
+  padding: 2rem;
+  color: $black-text;
+  border-radius: $home-box-border-radius;
+  text-align: center;
+  h1 {
+    font-size: 2rem;
+    color: $black-text;
+  }
+  blockquote {
+    font-size: 1.3rem;
+    color: $gray-dark;
+    margin-top: 1.2rem;
+    line-height: 1.6;
+  }
+  &:before {
+    @include home-text-above-box("Welcome");
+  }
+}

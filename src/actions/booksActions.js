@@ -74,12 +74,12 @@ export const getBooks = userInput => {
             dispatch(loadBooks([]));
           });
         } else {
-          batch(() => {
-            errorMessage && dispatch(setErrorMessage(""));
-            dispatch(setTotalFetchedBooks(data.totalItems));
-            dispatch(loadBooks(data.items));
-            dispatch(setIsFetching(false));
-          });
+          // batch(() => {
+          errorMessage && dispatch(setErrorMessage(""));
+          dispatch(setTotalFetchedBooks(data.totalItems));
+          dispatch(loadBooks(data.items));
+          dispatch(setIsFetching(false));
+          // });
         }
       })
       .catch(err => {
@@ -89,10 +89,14 @@ export const getBooks = userInput => {
   };
 };
 
-export const getBooksOnScroll = (books, userInput) => {
+export const getBooksOnScroll = books => {
   return (dispatch, getState) => {
-    const { isFetching } = getState().booksReducer;
-    if (isFetching || books.length < 20) {
+    const {
+      isFetching,
+      submittedInput,
+      totalFetchedBooks
+    } = getState().booksReducer;
+    if (isFetching || books.length < 20 || books.length == totalFetchedBooks) {
       /*
        prevent invoking if:
       waiting for server response or if
@@ -107,7 +111,7 @@ export const getBooksOnScroll = (books, userInput) => {
     if (pageOffset > lastLiOffset) {
       //---ABOVE--- check if last book at the bottom of the page
       dispatch(setIsFetching(true));
-      handleFetch(userInput, books.length).then(data => {
+      handleFetch(submittedInput, books.length).then(data => {
         batch(() => {
           dispatch(loadBooksOnScroll(data.items)); //load first 20 books + 20 books each time when scrolled to the bottom
           dispatch(setIsFetching(false));

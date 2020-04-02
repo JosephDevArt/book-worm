@@ -1,0 +1,6 @@
+.posts-section {
+  @include section-inside-main();
+  @include flexbox-all(column, center, center);
+  @import "./Pagination/Pagination.scss";
+  @import "./Post/Post.scss";
+}

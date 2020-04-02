@@ -1,11 +1,6 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import {
-  addToReadLater,
-  removeFromReadLater
-} from "../../../../../actions/readLaterActions";
+import React from "react";
+
 function InnerInfo(props) {
-  const isAuthorized = useSelector(state => state.userReducer.isAuthorized);
   const {
     title = "no title",
     description = "This book doesn't have a description",
@@ -16,16 +11,41 @@ function InnerInfo(props) {
     publishedDate,
     previewLink
   } = props.info.volumeInfo;
-  const [active, setActive] = useState(false);
+  const { isAuthorized, activeClass, removeBtnClick, addBtnClick } = props;
 
-  const dispatch = useDispatch();
+  let button;
 
-  const buttonClick = () => {
-    setActive(true);
-  };
+  if (props.scope === "books") {
+    button = (
+      <button
+        type="button"
+        onClick={addBtnClick}
+        className={`btn-add ${
+          //add warning ('log in to add') if not Authorized and clicked on Read Later btn
+          isAuthorized ? null : activeClass ? "log-in-warning" : null
+        }`}
+        title="add to read later"
+      >
+        Read Later
+      </button>
+    );
+  } else {
+    button = (
+      <button
+        title="remove from read later"
+        type="button"
+        className="btn-remove"
+        onClick={removeBtnClick}
+      >
+        Remove
+      </button>
+    );
+  }
+
   return (
     <div className="book-info-inner">
       <h3 className="title-inner">{title}</h3>
+
       <p className="author-inner">
         {authors
           ? authors.length === 1
@@ -33,6 +53,7 @@ function InnerInfo(props) {
             : `authors: ${authors.join(", ")}`
           : "unknown"}
       </p>
+
       <div className="category-and-rate-inner">
         <h4 className="category-inner">{categories}</h4>
         <span className="rate-inner">
@@ -50,34 +71,12 @@ function InnerInfo(props) {
           {publishedDate ? `${publishedDate.slice(0, 4)}` : "unknown"} year.
         </p>
       </div>
-      <p className="description-inner">{description.slice(0, 200)}...</p>
+      {/* 200 */}
+      <p className="description-inner">{description}</p>
       <div className="book-btns-inner">
-        {props.scope === "books" ? (
-          <button
-            type="button"
-            onClick={
-              isAuthorized
-                ? () => dispatch(addToReadLater(props.info))
-                : buttonClick
-            }
-            className={`btn-add ${
-              //add warning ('log in to add') if not Authorized and clicked on Read Later btn
-              isAuthorized ? null : active ? "log-in-warning" : null
-            }`}
-            title="add to read later"
-          >
-            Read Later
-          </button>
-        ) : (
-          <button
-            title="remove from read later"
-            type="button"
-            className="btn-remove"
-            onClick={() => dispatch(removeFromReadLater(props.info))}
-          >
-            Remove
-          </button>
-        )}
+        <div className="fadeout"></div>
+
+        {button}
         <a
           className="btn-preview"
           href={previewLink}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, memo } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import Book from "./Book/Book";
 import TotalAndSort from "./TotalAndSort/TotalAndSort";
@@ -6,14 +6,13 @@ import { throttle } from "lodash";
 import { getBooks, getBooksOnScroll } from "../../../actions/booksActions";
 import { useRef } from "react";
 
-function Books(props) {
+function Books() {
   const dispatch = useDispatch();
-  const { books, errorMessage, isFetching, submittedInput } = useSelector(
+  const { books, errorMessage, isFetching } = useSelector(
     state => ({
       books: state.booksReducer.books,
       errorMessage: state.booksReducer.errorMessage,
-      isFetching: state.booksReducer.isFetching,
-      submittedInput: state.booksReducer.submittedInput
+      isFetching: state.booksReducer.isFetching
     }),
     shallowEqual
   );
@@ -25,12 +24,13 @@ function Books(props) {
 
   const handleScroll = throttle(() => {
     // Load more books on scroll
-    dispatch(getBooksOnScroll(books, submittedInput));
+    dispatch(getBooksOnScroll(books));
   }, 400);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
+      handleScroll.cancel(); //cancel throttling
       window.removeEventListener("scroll", handleScroll);
     };
   }, [books.length]);

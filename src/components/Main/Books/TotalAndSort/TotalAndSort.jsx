@@ -1,6 +1,5 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { useEffect, useMemo } from "react";
 import sortIcon from "../iconfinder-icon.svg";
 import { loadBooks } from "./../../../../actions/booksActions";
 import { loadReadLaterBooks } from "./../../../../actions/readLaterActions";
@@ -9,26 +8,27 @@ import {
   setSelectValue
 } from "./../../../../actions/sortActions";
 const TotalAndSort = ({ scope }) => {
-  // console.log("total and sort");
   const dispatch = useDispatch();
   const {
     selectedValue,
     sortIconRotated,
     books,
     readLaterBooks,
-    totalFetchedBooks
+    totalFetchedBooks,
+    isFetching
   } = useSelector(
     state => ({
       readLaterBooks: state.readLaterReducer.readLaterBooks,
       selectedValue: state.sortReducer.selectedValue,
       sortIconRotated: state.sortReducer.sortIconRotated,
       books: state.booksReducer.books,
-      totalFetchedBooks: state.booksReducer.totalFetchedBooks
+      totalFetchedBooks: state.booksReducer.totalFetchedBooks,
+      isFetching: state.booksReducer.isFetching
     }),
     shallowEqual
   );
-  useEffect(() => {
-    // console.log("useEffect");
+
+  const sortBooks = () => {
     //Sorting by selected value(scope is where this component is rendered(books-section or readLater-section))
     if (scope === "books" ? books.length : readLaterBooks.length) {
       // console.log("sort");
@@ -65,7 +65,16 @@ const TotalAndSort = ({ scope }) => {
         ? dispatch(loadBooks(newItems))
         : dispatch(loadReadLaterBooks(newItems));
     }
-  }, [selectedValue, books.length, sortIconRotated]);
+  };
+
+  useEffect(() => {
+    if (isFetching == true) {
+      //run sort only after books have been fetched
+      return;
+    }
+    sortBooks();
+  }, [selectedValue, isFetching, sortIconRotated]);
+
   return (
     <div className="total-and-sort">
       <div className="total-books">

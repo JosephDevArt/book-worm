@@ -1,14 +1,10 @@
 import React from "react";
 import Book from "../Books/Book/Book";
 import TotalAndSort from "../Books/TotalAndSort/TotalAndSort";
-import { useSelector, shallowEqual } from "react-redux";
-function ReadLater(props) {
-  const { readLaterBooks, isAuthorized } = useSelector(
-    state => ({
-      readLaterBooks: state.readLaterReducer.readLaterBooks,
-      isAuthorized: state.userReducer.isAuthorized
-    }),
-    shallowEqual
+import { useSelector } from "react-redux";
+function ReadLater() {
+  const readLaterBooks = useSelector(
+    state => state.readLaterReducer.readLaterBooks
   );
 
   return (

@@ -45,14 +45,16 @@
     font-size: 0.9rem;
     line-height: 1.3;
     overflow: hidden;
+    position: relative;
+    margin-bottom: 1.1rem;
   }
 
   //----BUTTONS----
 
   .book-btns-inner {
+    position: relative;
     @include flexbox();
     @include justify-content(space-between);
-    padding-top: 1rem;
     margin-top: auto; //push buttons to the bottom
     .btn-add,
     .btn-preview {
@@ -122,4 +124,31 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+}
+
+.fadeout {
+  //Text(Book description) fadeout at the bottom of the Book
+  position: absolute;
+  bottom: 2.6rem;
+  left: 0;
+  right: 0;
+  height: 4rem;
+  background: -webkit-linear-gradient(
+    rgba(255, 255, 255, 0) 0%,
+    $gray-dark 90%
+  );
+  background-image: -moz-linear-gradient(
+    rgba(255, 255, 255, 0) 0%,
+    $gray-dark 90%
+  );
+  background-image: -o-linear-gradient(
+    rgba(255, 255, 255, 0) 0%,
+    $gray-dark 90%
+  );
+  background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, $gray-dark 90%);
+  background-image: -ms-linear-gradient(
+    rgba(255, 255, 255, 0) 0%,
+    $gray-dark 90%
+  );
+  // background-image: linear-gradient(to bottom, transparent, $gray-dark);
 }

@@ -1,0 +1,22 @@
+.pagination {
+  ul {
+    @include flexbox-all(row, center, center);
+    button {
+      padding: 0.4rem 1.6rem;
+      background: none;
+      border: 1px solid $border-gray-light;
+      border-radius: 4px;
+      color: $black-text;
+      cursor: pointer;
+    }
+    li {
+      a {
+        color: $black-text;
+      }
+    }
+    .active {
+      color: $primary-purple !important;
+      font-weight: bold !important;
+    }
+  }
+}

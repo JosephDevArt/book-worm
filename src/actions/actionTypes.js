@@ -40,3 +40,7 @@ export const LOAD_READ_LATER_BOOKS = "LOAD_READ_LATER_BOOKS";
 
 //---- POSTS ----
 export const LOAD_POSTS = "LOAD_POSTS";
+
+export const RENDERED = "RENDERED";
+
+export const rendered = () => ({ type: RENDERED });

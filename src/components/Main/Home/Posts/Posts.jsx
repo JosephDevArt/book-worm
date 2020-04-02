@@ -8,7 +8,7 @@ function Posts({ posts }) {
       {posts.slice(0, 3).map(post => (
         <Post key={post.id} {...post} />
       ))}
-      <NavLink className="btn-see-more" to="/myPosts">
+      <NavLink className="btn-see-more" to="/Posts">
         See More
       </NavLink>
     </div>

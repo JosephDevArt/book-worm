@@ -5,13 +5,13 @@ import Posts from "./Posts/Posts";
 import WeHave from "./WeHave/WeHave";
 import BookWorm from "./BookWorm/BookWorm";
 import MyNetwork from "./MyNetwork/MyNetwork";
-import InviteFriends from "./InviteFriends/InviteFriends";
+import SendReview from "./SendReview/SendReview";
 const Home = () => {
   const { users, followingUsers, posts } = useSelector(
-    state => ({
+    (state) => ({
       users: state.homeReducer.users,
       followingUsers: state.homeReducer.followingUsers,
-      posts: state.postsReducer.posts
+      posts: state.postsReducer.posts,
     }),
     shallowEqual
   );
@@ -23,7 +23,7 @@ const Home = () => {
       <MyNetwork followingUsers={followingUsers} posts={posts} />
       <div className="posts-and-invite">
         <Posts posts={posts} />
-        <InviteFriends />
+        <SendReview />
       </div>
     </section>
   );

@@ -1,0 +1,89 @@
+.send-review {
+  @include home-grid-box();
+  @include flexbox-all(column, center, center);
+  margin-top: 3rem;
+  border-radius: $home-box-border-radius;
+  padding: 1.6rem 1.2rem;
+  // text-align: center;
+  &:before {
+    content: "Send review";
+    position: absolute;
+    font-weight: bold;
+    top: -1.8rem;
+    color: $black-text;
+    left: 0;
+  }
+  .fa-users {
+    //Users icon
+    font-size: 4rem;
+    width: 140px;
+    height: 140px;
+    @include flexbox-all(row, center, center);
+    color: white;
+    background: linear-gradient(to top right, #e000fe, #9630fd);
+    border-radius: 50%;
+  }
+  h2 {
+    color: $black-text;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+  }
+  p {
+    color: $gray-dark;
+    margin: 0.8rem 0 1rem 0;
+    padding-bottom: 0.4rem;
+    font-size: 1rem;
+    border-bottom: 1px solid $border-gray-light;
+  }
+  input,
+  textarea {
+    width: 100%;
+    padding: 0.3rem;
+    font-size: 1.2rem;
+    color: $black-text;
+    border-radius: $home-box-border-radius;
+    border: 1px solid $border-gray-light;
+    margin: 0.5rem 0;
+    font-family: sans-serif;
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 1px $border-gray-light;
+    }
+    &::placeholder {
+      color: $gray-light;
+      font-size: 1.2rem;
+    }
+  }
+  input {
+  }
+  textarea {
+    width: 100%;
+    resize: none;
+    height: 100px;
+    border: 1px solid $border-gray-light;
+  }
+  .msg-success,
+  .msg-error {
+    text-align: center;
+    border: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .msg-success {
+    color: green;
+  }
+  .msg-error {
+    color: rgb(255, 92, 92);
+  }
+
+  button {
+    cursor: pointer;
+    width: 100%;
+    padding: 0.6rem 0;
+    font-size: 1.2rem;
+    color: white;
+    background-color: $orange;
+    border: none;
+    border-radius: $home-box-border-radius;
+  }
+}

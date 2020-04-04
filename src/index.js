@@ -19,7 +19,7 @@ const rootRedcuer = combineReducers({
   readLaterReducer: readLaterReducer,
   userReducer: userReducer,
   homeReducer: homeReducer,
-  postsReducer: postReducer
+  postsReducer: postReducer,
 });
 
 const store = createStore(

@@ -1,18 +1,43 @@
 .home-section {
-  padding: 3rem 2rem;
+  @include section-inside-main();
   display: grid;
   grid-template-columns: 3fr minmax(300px, 1fr);
-  grid-template-rows: 1fr 2.7fr 16fr;
+  grid-template-rows: 1fr 3fr min-content;
   grid-template-areas:
     "we-have network"
-    "book-worm posts-and-invite"
-    "users posts-and-invite";
-  grid-row-gap: 3rem;
-  grid-column-gap: 2rem;
+    "book-worm posts-and-send"
+    "users posts-and-send";
+  grid-gap: 3rem 2rem;
+  @include tablet-landscape {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr) repeat(3, min-content);
+    grid-template-areas:
+      "we-have"
+      "network"
+      "book-worm"
+      "users"
+      "posts-and-send";
+    grid-row-gap: 2.5rem;
+  }
+  @include tablet {
+    grid-template-rows: 2fr 1fr repeat(3, min-content);
+  }
+  @import "./WeHave/WeHave.scss";
+  @import "./MyNetwork/MyNetwork.scss";
+  @import "./BookWorm/BookWorm.scss";
+  @import "./Posts/Posts.scss";
+  @import "./Users/Users.scss";
+  @import "./SendReview/SendReview.scss";
 }
 
-.posts-and-invite {
-  grid-area: posts-and-invite;
-  display: flex;
-  flex-direction: column;
+.posts-and-send {
+  grid-area: posts-and-send;
+  @include flexbox();
+  @include flex-direction(column);
+  @include tablet-landscape {
+    @include flex-direction(row);
+  }
+  @include tablet {
+    @include flex-direction(column);
+  }
 }

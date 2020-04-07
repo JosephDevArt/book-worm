@@ -1,18 +1,44 @@
 .main-nav {
-  position: fixed;
+  position: sticky;
   height: 100vh;
-  left: 0;
   top: 0;
-  width: 300px;
+  grid-area: navv;
   box-shadow: inset -1px 0px 3px rgb(108, 108, 108);
-  z-index: 2;
+  z-index: 4;
   background: linear-gradient(to top right, #e000fe, #9630fd);
+  transition: all 0.6s ease-in-out;
   .logo {
-    width: 260px;
-    margin: 1.8rem;
+    display: block;
+    width: 85%;
+    margin: 1.8rem auto;
   }
   ul {
     border-top: 10px solid #f4f4f4;
     padding-top: 2rem;
   }
+  @import "./NavLink/LinkComp.scss";
+  @include phone-medium-landscape {
+    position: fixed;
+    right: 800px;
+    width: 100%;
+    top: 85px;
+    overflow: auto;
+    .logo {
+      width: 50%;
+    }
+  }
+  @include phone-small-landscape {
+    right: 650px;
+    transition-duration: 0.5s;
+  }
+  @include phone-medium-portrait {
+    right: 450px;
+  }
+  @include phone-small-portrait {
+    right: 350px;
+  }
+}
+
+.nav-slide-right {
+  right: 0px;
 }

@@ -8,7 +8,7 @@ function Pagination({
   lastPage,
   nextPagesBtnClick,
   prevPagesBtnClick,
-  currentPage
+  currentPage,
 }) {
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
@@ -21,11 +21,11 @@ function Pagination({
           <button onClick={() => prevPagesBtnClick()}>Prev</button>
         )}
         {pageNumbers
-          .filter(number => number <= lastPage && number >= firstPage)
-          .map(number => (
+          .filter((number) => number <= lastPage && number >= firstPage)
+          .map((number) => (
             <li key={number}>
               <a
-                className={currentPage == number && "active"}
+                className={currentPage == number ? "active" : ""}
                 onClick={() => paginate(number)}
                 href="#"
               >

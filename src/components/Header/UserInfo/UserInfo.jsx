@@ -6,21 +6,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadReadLaterBooks } from "./../../../actions/readLaterActions";
 import { loadUsers, setFollowingUsers } from "./../../../actions/homeActions";
 
-const UserInfo = props => {
+const UserInfo = (props) => {
   const dispatch = useDispatch();
 
   const [userName, setUserName] = useState("");
   const [userImg, setUserImg] = useState("");
   const [isAuthorizing, setIsAuthorizing] = useState(false);
 
-  const isAuthorized = useSelector(state => state.userReducer.isAuthorized);
+  const isAuthorized = useSelector((state) => state.userReducer.isAuthorized);
 
   const logIn = () => {
     //waiting for facebook response
     setIsAuthorizing(true);
   };
 
-  const responseFacebook = response => {
+  const responseFacebook = (response) => {
     //received response
     setUserName(response.name);
     setUserImg(response.picture.data.url);
@@ -37,18 +37,18 @@ const UserInfo = props => {
   let info;
   if (isAuthorized) {
     info = (
-      <div className="user_account">
+      <>
         <p className="user_name">{userName}</p>
         <img src={userImg} alt="user" />
         <button className="logout-button" onClick={logOut}>
           <i className="fas fa-sign-out-alt"></i>
           <span>Log out</span>
         </button>
-      </div>
+      </>
     );
   } else {
     info = (
-      <div className="user_account">
+      <>
         <p className="user_name">Welcome to Book worm</p>
         <img
           src={defaultUserImg}
@@ -61,17 +61,17 @@ const UserInfo = props => {
           fields="name,picture"
           onClick={logIn}
           callback={responseFacebook}
-          render={renderProps => (
+          render={(renderProps) => (
             <button className="login-button" onClick={renderProps.onClick}>
               <i className="fas fa-sign-in-alt"></i>
               <span>Log in</span>
             </button>
           )}
         />
-      </div>
+      </>
     );
   }
-  return <div>{info}</div>;
+  return <div className="user_account">{info}</div>;
 };
 
 export default UserInfo;

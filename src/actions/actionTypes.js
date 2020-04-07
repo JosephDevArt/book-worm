@@ -3,6 +3,10 @@
 export const SET_IS_AUTHORIZED = "SET_IS_AUTHORIZED";
 
 export const SET_FOLLOWING_USERS = "SET_FOLLOWING_USERS";
+
+//---- NAV ----
+export const SLIDE_NAVBAR = "SLIDE_NAVBAR";
+
 //---- HOME ----
 
 export const LOAD_USERS = "LOAD_USERS";

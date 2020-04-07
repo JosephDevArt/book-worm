@@ -4,7 +4,7 @@ function MyNetwork({ followingUsers, posts }) {
   return (
     <div className="my-network">
       <div>
-        <span>738</span>
+        <span>0</span>
         <p>followers</p>
       </div>
       <div>

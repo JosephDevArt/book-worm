@@ -1,13 +1,9 @@
 import React from "react";
-import SearchBox from "./SearchBox/SearchBox";
-import TopIcons from "./TopIcons/TopIcons";
 import UserInfo from "./UserInfo/UserInfo";
 
 function Header() {
   return (
     <header>
-      <SearchBox />
-      <TopIcons />
       <UserInfo />
     </header>
   );

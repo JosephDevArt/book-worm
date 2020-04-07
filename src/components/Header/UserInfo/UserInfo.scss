@@ -6,6 +6,13 @@
     ". img logout";
   grid-gap: 0.4rem;
   align-items: center;
+  @include phone-medium-landscape {
+    grid-template-areas:
+      "img . ."
+      "img name name"
+      "img logout logout";
+    grid-row-gap: 0.2rem;
+  }
 }
 .user_account img {
   grid-area: img;
@@ -13,6 +20,10 @@
   height: 45px;
   border: 1px solid rgb(255, 0, 255);
   border-radius: 50%;
+  @include phone-medium-landscape {
+    width: 55px;
+    height: 55px;
+  }
 }
 
 //When waiting for authorization response => spin defaultUserImage
@@ -33,6 +44,13 @@
   color: rgb(101, 101, 101);
   text-shadow: 1px 1px 2px rgb(211, 211, 211);
   grid-area: name;
+  @include phone-medium-portrait {
+    font-size: 0.9rem;
+  }
+  @include phone-small-portrait {
+    width: 120px;
+    line-height: 1;
+  }
 }
 
 .login-button,
@@ -43,7 +61,7 @@
   border: none;
   font-size: 1rem;
   cursor: pointer;
-  display: flex;
+  @include flexbox();
   align-items: center;
   font-family: "Montserrat";
 }

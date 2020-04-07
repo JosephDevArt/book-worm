@@ -21,7 +21,7 @@ const Home = () => {
       <BookWorm />
       <Users users={users} followingUsers={followingUsers} />
       <MyNetwork followingUsers={followingUsers} posts={posts} />
-      <div className="posts-and-invite">
+      <div className="posts-and-send">
         <Posts posts={posts} />
         <SendReview />
       </div>

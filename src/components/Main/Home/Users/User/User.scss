@@ -1,9 +1,11 @@
 .user {
   @include flexbox();
   @include align-items(center);
-  width: 100%;
   padding: 1.6rem 1.2rem;
   border-bottom: 1px solid $border-gray-light;
+  @include phone-small-portrait {
+    padding: 1.2rem 0.8rem;
+  }
   &:last-child {
     border: none;
   }
@@ -15,31 +17,58 @@
   .user-info {
     @include flexbox();
     @include flex-direction(column);
-    h3,
-    p {
-      color: $black-text;
-    }
     span {
       font-size: 0.9rem;
       color: $gray-light;
+    }
+    @include tablet {
+      h3 {
+        font-size: 1rem;
+        color: $black-text;
+      }
+      p {
+        font-size: 0.9rem;
+        color: $gray-dark;
+      }
+      span {
+        font-size: 0.8rem;
+      }
+      padding-right: 1rem;
+    }
+    @include phone-small-portrait {
+      h3 {
+        font-size: 0.9rem;
+      }
+      p {
+        font-size: 0.8rem;
+      }
+      span {
+        font-size: 0.7rem;
+      }
     }
   }
 }
 
 //----FOLLOW/UNFOLLOW BUTTONS----
+
 .btn {
   padding: 0.4rem 1.2rem;
   text-align: center;
   width: 25%;
   margin-left: auto;
+  position: relative;
   border-radius: 20px;
   background-color: white;
-  position: relative;
   border: 1px solid;
   transition: 0.2s ease-in-out;
+  text-align: center;
   cursor: pointer;
   &:focus {
     outline: none;
+  }
+  @include phone-small-landscape {
+    width: 30%;
+    font-size: 0.7rem;
   }
 }
 

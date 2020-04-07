@@ -16,13 +16,13 @@ function App() {
     });
   }, []);
   return (
-    <div className="App">
-      <BrowserRouter>
+    <BrowserRouter>
+      <div className="App">
         <Nav />
         <Header />
         <Main />
-      </BrowserRouter>
-    </div>
+      </div>
+    </BrowserRouter>
   );
 }
 

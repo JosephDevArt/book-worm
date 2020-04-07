@@ -51,15 +51,14 @@ function SendReview() {
         />
         <label>Message</label>
         <textarea required placeholder="Enter message..." name="message" />
-
+        {successResponseMessage ? (
+          <p className="msg-success">{successResponseMessage}</p>
+        ) : errorResponseMessage ? (
+          <p className="msg-error">{errorResponseMessage}</p>
+        ) : null}
         <button type="submit">
           Send Invite {isLoading && <i className="fa fa-refresh fa-spin"></i>}
         </button>
-        {successResponseMessage ? (
-          <p className="msg-success">{successResponseMessage}</p>
-        ) : (
-          <p className="msg-error">{errorResponseMessage}</p>
-        )}
       </form>
     </div>
   );

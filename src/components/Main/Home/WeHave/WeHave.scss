@@ -1,17 +1,17 @@
 .we-have {
   grid-area: we-have;
-  display: flex;
-  justify-content: space-between;
   position: relative;
-  &:before {
-    content: "We have";
-    position: absolute;
-    font-weight: bold;
-    top: -1.8rem;
-    color: $black-text;
-    left: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
   }
 
+  &:before {
+    @include home-text-above-box("We have");
+  }
   .fa-book {
     color: $primary-purple;
   }
@@ -20,17 +20,16 @@
   }
   .fa-money-bill-wave-alt {
     color: rgb(49, 169, 49);
+    margin-left: 0.4rem;
   }
   .fa-building {
     color: #ffb95e;
   }
 
   & > div {
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0 3px 10px 2px rgb(223, 223, 223);
-    width: 180px;
+    @include home-grid-box();
     padding: 0.6rem 1.2rem;
-    margin-left: 1.2rem;
+    // min-width: 150px;
     display: flex;
     flex-direction: column;
     border-radius: 4px;
@@ -38,16 +37,34 @@
       font-size: 1.4rem;
       font-weight: bold;
       color: $black-text;
+      @include laptop {
+        font-size: 1.2rem;
+      }
+      @include phone-small-portrait {
+        font-size: 1rem;
+      }
     }
     .icon-and-name {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 1.4rem;
-      color: $gray-dark;
+      @include flexbox-all(row, space-between, center);
+      i {
+        font-size: 1.4rem;
+        @include laptop {
+          font-size: 1.2rem;
+        }
+        @include phone-small-portrait {
+          font-size: 1rem;
+        }
+      }
+      p {
+        color: $gray-dark;
+        font-size: 1.4rem;
+        @include laptop {
+          font-size: 1.2rem;
+        }
+        @include phone-small-portrait {
+          font-size: 1rem;
+        }
+      }
     }
-  }
-  & div:first-child {
-    margin: 0;
   }
 }

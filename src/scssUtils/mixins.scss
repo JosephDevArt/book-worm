@@ -38,10 +38,13 @@
 }
 
 @mixin section-inside-main() {
-  width: 90%;
+  width: 100%;
   height: 100%;
-  margin: 2rem auto;
+  padding: 3rem 2rem;
   position: relative;
+  @include phone-small-landscape {
+    padding: 2.5rem 1rem;
+  }
 }
 
 @mixin home-grid-box() {
@@ -56,4 +59,8 @@
   top: -1.8rem;
   color: $black-text;
   left: 0;
+  @include phone-small-portrait {
+    font-size: 0.9rem;
+    top: -1.6rem;
+  }
 }

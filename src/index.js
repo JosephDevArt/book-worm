@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import "./main.scss";
+import "./index.scss";
 import * as serviceWorker from "./serviceWorker";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
@@ -12,7 +12,7 @@ import readLaterReducer from "./reducers/readLaterReducer";
 import userReducer from "./reducers/userReducer";
 import homeReducer from "./reducers/homeReducer";
 import postReducer from "./reducers/postsReducer";
-
+import navbarReducer from "./reducers/navbarReducer";
 const rootRedcuer = combineReducers({
   booksReducer: booksReducer,
   sortReducer: sortReducer,
@@ -20,6 +20,7 @@ const rootRedcuer = combineReducers({
   userReducer: userReducer,
   homeReducer: homeReducer,
   postsReducer: postReducer,
+  navbar: navbarReducer,
 });
 
 const store = createStore(

@@ -1,20 +1,23 @@
 import React from "react";
 import logo from "./Logo.svg";
-import LinkComp from "./NavLinks/LinkComp";
-import { NavLink } from "react-router-dom";
-import "./Nav.scss";
+import LinkComp from "./NavLink/LinkComp";
+import HamMenu from "./HamMenu/HamMenu";
+import { useSelector } from "react-redux";
 function Nav() {
+  const navIsOpen = useSelector((state) => state.navbar.navIsOpen);
   return (
-    <nav className="main-nav">
-      <img src={logo} className="logo" alt={"logo"} />
-      <ul>
-        <LinkComp name="Home" iconName="fas fa-home" to="/" />
-        <LinkComp name="Books" iconName="fas fa-book" to="/Books" />
-        <LinkComp name="Read Later" iconName="far fa-star" to="/readLater" />
-        <LinkComp name="Posts" iconName="fas fa-paper-plane" to="/Posts" />
-        <LinkComp name="Dialogs" iconName="far fa-comments" to="/dialogs" />
-      </ul>
-    </nav>
+    <>
+      <HamMenu />
+      <nav className={navIsOpen ? "main-nav nav-slide-right" : "main-nav"}>
+        <img src={logo} className="logo" alt={"logo"} />
+        <ul>
+          <LinkComp name="Home" iconName="fas fa-home" to="/" />
+          <LinkComp name="Books" iconName="fas fa-book" to="/Books" />
+          <LinkComp name="Read Later" iconName="far fa-star" to="/readLater" />
+          <LinkComp name="Posts" iconName="fas fa-paper-plane" to="/Posts" />
+        </ul>
+      </nav>
+    </>
   );
 }
 

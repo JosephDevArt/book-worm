@@ -1,6 +1,10 @@
 .my-network {
   @include home-grid-box();
   @include flexbox-all(row, center, center);
+  @include tablet-landscape {
+    @include justify-content(space-evenly);
+  }
+
   grid-area: network;
   border-radius: 4px;
   &:before {
@@ -21,5 +25,17 @@
   & div:nth-child(2) {
     border-right: 1px solid $border-gray-light;
     border-left: 1px solid $border-gray-light;
+    @include tablet-landscape {
+      padding: 0.4rem 5rem;
+    }
+    @include tablet {
+      padding: 0.4rem 2.6rem;
+    }
+    @include phone-iphoneX {
+      padding: 0.4rem 1.6rem;
+    }
+    @include phone-small-portrait {
+      padding: 0.4rem 0.6rem;
+    }
   }
 }

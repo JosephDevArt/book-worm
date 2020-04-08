@@ -3,27 +3,30 @@ import { useSelector } from "react-redux";
 import Pagination from "./Pagination/Pagination";
 import Post from "./Post/Post";
 function Posts() {
-  const { posts } = useSelector(state => ({
-    posts: state.postsReducer.posts
+  const { posts } = useSelector((state) => ({
+    posts: state.posts.posts,
   }));
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(4);
+  const [postsPerPage] = useState(6);
   const [firstPage, setFirstPage] = useState(1);
   const [lastPage, setLastPage] = useState(5);
 
-  //set current page
+  //-----pages portion-----
+  const pagesPerPortion = 5;
+  const pages = Math.ceil(posts.length / postsPerPage);
+  //-----pages portion END-----
 
-  const paginate = pageNubmer => {
+  const paginate = (pageNubmer) => {
     setCurrentPage(pageNubmer);
   };
 
   const nextPagesBtnClick = () => {
-    setFirstPage(firstPage + 5);
-    setLastPage(lastPage + 5);
+    setFirstPage(firstPage + pagesPerPortion);
+    setLastPage(lastPage + pagesPerPortion);
   };
   const prevPagesBtnClick = () => {
-    setFirstPage(firstPage - 5);
-    setLastPage(lastPage - 5);
+    setFirstPage(firstPage - pagesPerPortion);
+    setLastPage(lastPage - pagesPerPortion);
   };
 
   //Get current posts
@@ -38,6 +41,7 @@ function Posts() {
         paginate={paginate}
         currentPage={currentPage}
         postsPerPage={postsPerPage}
+        pages={pages}
         totalPosts={posts.length}
         firstPage={firstPage}
         lastPage={lastPage}
@@ -45,7 +49,7 @@ function Posts() {
         prevPagesBtnClick={prevPagesBtnClick}
       />
       <ul className="current-posts">
-        {currentPosts.map(post => {
+        {currentPosts.map((post) => {
           return <Post key={post.id} post={post} />;
         })}
       </ul>

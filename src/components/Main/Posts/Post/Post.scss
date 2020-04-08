@@ -2,18 +2,31 @@
   @include flexbox();
   @include align-items(center);
   padding: 1.4rem 1.2rem;
-  min-height: 130px;
+  height: 150px;
   border-bottom: 1px solid $border-gray-light;
+  @include tablet {
+    height: 180px;
+  }
+  @include phone-small-portrait {
+    padding: 1.2rem 0.5rem;
+  }
+
   &:last-child {
     border: none;
     padding-top: 0;
     padding-bottom: 0;
+    @include tablet {
+      padding-top: 1.4rem;
+    }
   }
 
   img {
     width: 60px;
     border-radius: 50%;
     margin-right: 0.8rem;
+    @include phone-small-portrait {
+      width: 50px;
+    }
   }
   .user-info {
     @include flexbox();
@@ -25,6 +38,24 @@
     span {
       font-size: 0.9rem;
       color: $gray-light;
+    }
+    @include phone-medium-portrait {
+      h3,
+      p {
+        font-size: 0.9rem;
+      }
+      span {
+        font-size: 0.8rem;
+      }
+    }
+    @include phone-small-portrait {
+      h3,
+      p {
+        font-size: 0.8rem;
+      }
+      span {
+        font-size: 0.7rem;
+      }
     }
   }
 }

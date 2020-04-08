@@ -1,7 +1,13 @@
 .book {
+  width: 100%;
   height: 340px;
   position: relative;
-  max-width: 280px;
+  max-width: 325px;
+  justify-self: center;
+  @include phone-small-landscape {
+    max-width: 550px;
+    height: 380px;
+  }
   .title-outer {
     color: $black-text;
     font-size: 0.9rem;
@@ -17,9 +23,28 @@
     .book-info-inner {
       @include flexbox();
       height: 115%;
-      transform: translate(-5%, -5%);
+      transform: translate(-6%, -5%);
       width: 115%;
       background-color: $gray-dark;
+      @include tablet {
+        width: 110%;
+        height: 110%;
+        transform: translate(-5%, -5%);
+      }
+      @include phone-medium-landscape {
+        width: 105%;
+        height: 105%;
+        transform: translate(-2.5%, -2.5%);
+      }
+      @include phone-medium-portrait {
+        width: 100%;
+        height: 110%;
+        transform: translate(0, -5%);
+      }
+      @include phone-iphoneX {
+        transform: translate(0, -5%);
+        width: 100%;
+      }
     }
     img {
       opacity: 0;

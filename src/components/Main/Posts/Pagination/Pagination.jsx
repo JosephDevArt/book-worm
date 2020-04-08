@@ -9,6 +9,7 @@ function Pagination({
   nextPagesBtnClick,
   prevPagesBtnClick,
   currentPage,
+  pages,
 }) {
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
@@ -33,7 +34,7 @@ function Pagination({
               </a>
             </li>
           ))}
-        {lastPage != 25 && (
+        {lastPage < pages && (
           <button onClick={() => nextPagesBtnClick()}>Next</button>
         )}
       </ul>

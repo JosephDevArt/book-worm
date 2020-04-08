@@ -3,16 +3,16 @@ import InnerInfo from "./InnerInfo/InnerInfo";
 import noImg from "./noImg.jpg";
 import {
   addToReadLater,
-  removeFromReadLater
+  removeFromReadLater,
 } from "./../../../../actions/readLaterActions";
 import { useDispatch, useSelector } from "react-redux";
 
 function Book(props) {
   const dispatch = useDispatch();
-  const isAuthorized = useSelector(state => state.userReducer.isAuthorized);
+  const isAuthorized = useSelector((state) => state.user.isAuthorized);
   const {
     title = "no title",
-    imageLinks: { smallThumbnail: image } = ""
+    imageLinks: { smallThumbnail: image } = "",
   } = props.book.volumeInfo;
   const [activeClass, setActiveClass] = useState(false);
 

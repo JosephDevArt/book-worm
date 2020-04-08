@@ -9,9 +9,9 @@ import SendReview from "./SendReview/SendReview";
 const Home = () => {
   const { users, followingUsers, posts } = useSelector(
     (state) => ({
-      users: state.homeReducer.users,
-      followingUsers: state.homeReducer.followingUsers,
-      posts: state.postsReducer.posts,
+      users: state.home.users,
+      followingUsers: state.home.followingUsers,
+      posts: state.posts.posts,
     }),
     shallowEqual
   );

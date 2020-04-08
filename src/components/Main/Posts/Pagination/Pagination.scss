@@ -1,6 +1,11 @@
 .pagination {
+  margin-bottom: 1rem;
+  @include tablet {
+    margin-bottom: 2rem;
+  }
   ul {
     @include flexbox-all(row, center, center);
+
     button {
       padding: 0.4rem 1.6rem;
       background: none;
@@ -8,11 +13,20 @@
       border-radius: 4px;
       color: $black-text;
       cursor: pointer;
+      @include phone-small-portrait {
+        padding: 0.4rem 1.2rem;
+      }
     }
     li {
       a {
         color: $black-text;
         padding: 0.5rem 1rem;
+        @include phone-iphoneX {
+          padding: 0.8rem;
+        }
+        @include phone-small-portrait {
+          padding: 0.6rem;
+        }
       }
     }
     .active {

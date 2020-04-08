@@ -14,12 +14,12 @@ import homeReducer from "./reducers/homeReducer";
 import postReducer from "./reducers/postsReducer";
 import navbarReducer from "./reducers/navbarReducer";
 const rootRedcuer = combineReducers({
-  booksReducer: booksReducer,
-  sortReducer: sortReducer,
-  readLaterReducer: readLaterReducer,
-  userReducer: userReducer,
-  homeReducer: homeReducer,
-  postsReducer: postReducer,
+  books: booksReducer,
+  sort: sortReducer,
+  readLater: readLaterReducer,
+  user: userReducer,
+  home: homeReducer,
+  posts: postReducer,
   navbar: navbarReducer,
 });
 

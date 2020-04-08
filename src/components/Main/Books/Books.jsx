@@ -9,10 +9,10 @@ import { useRef } from "react";
 function Books() {
   const dispatch = useDispatch();
   const { books, errorMessage, isFetching } = useSelector(
-    state => ({
-      books: state.booksReducer.books,
-      errorMessage: state.booksReducer.errorMessage,
-      isFetching: state.booksReducer.isFetching
+    (state) => ({
+      books: state.books.books,
+      errorMessage: state.books.errorMessage,
+      isFetching: state.books.isFetching,
     }),
     shallowEqual
   );
@@ -38,9 +38,8 @@ function Books() {
   return (
     <section className="books-section">
       <form
-        onSubmit={e => e.preventDefault()}
-        style={{ marginTop: books.length ? 50 : 200 }}
-        className="search-books"
+        onSubmit={(e) => e.preventDefault()}
+        className={`search-books ${books.length ? "move-top" : ""}`}
       >
         <input
           type="text"
@@ -55,7 +54,8 @@ function Books() {
           disabled={isFetching ? true : false}
           className="btn-search"
         >
-          Search {isFetching && <i className="fa fa-refresh fa-spin"></i>}
+          Search
+          {isFetching && <i className="fa fa-refresh fa-spin"></i>}
           {/*Add spinner animation on loading books */}
         </button>
       </form>
@@ -65,7 +65,7 @@ function Books() {
       <div className="search-results">
         <TotalAndSort scope="books" />
         <ul className="books">
-          {books.map(book => (
+          {books.map((book) => (
             <Book key={book.id} scope="books" book={book} />
           ))}
         </ul>

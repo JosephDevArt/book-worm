@@ -5,7 +5,7 @@ import { loadBooks } from "./../../../../actions/booksActions";
 import { loadReadLaterBooks } from "./../../../../actions/readLaterActions";
 import {
   rotateSortIcon,
-  setSelectValue
+  setSelectValue,
 } from "./../../../../actions/sortActions";
 const TotalAndSort = ({ scope }) => {
   const dispatch = useDispatch();
@@ -15,15 +15,15 @@ const TotalAndSort = ({ scope }) => {
     books,
     readLaterBooks,
     totalFetchedBooks,
-    isFetching
+    isFetching,
   } = useSelector(
-    state => ({
-      readLaterBooks: state.readLaterReducer.readLaterBooks,
-      selectedValue: state.sortReducer.selectedValue,
-      sortIconRotated: state.sortReducer.sortIconRotated,
-      books: state.booksReducer.books,
-      totalFetchedBooks: state.booksReducer.totalFetchedBooks,
-      isFetching: state.booksReducer.isFetching
+    (state) => ({
+      readLaterBooks: state.readLater.readLaterBooks,
+      selectedValue: state.sort.selectedValue,
+      sortIconRotated: state.sort.sortIconRotated,
+      books: state.books.books,
+      totalFetchedBooks: state.books.totalFetchedBooks,
+      isFetching: state.books.isFetching,
     }),
     shallowEqual
   );
@@ -33,7 +33,7 @@ const TotalAndSort = ({ scope }) => {
     if (scope === "books" ? books.length : readLaterBooks.length) {
       // console.log("sort");
       let newItems = scope === "books" ? books.slice() : readLaterBooks.slice();
-      newItems.sort(function(a, b) {
+      newItems.sort(function (a, b) {
         //---BELOW---Checking for undefined(if 'selectedValue' is missing) => put in the end
         if (
           a.volumeInfo[selectedValue] == null ||
@@ -86,18 +86,16 @@ const TotalAndSort = ({ scope }) => {
       <div className="sort-by">
         <p className="sort-text">Sort by</p>
         <div className="sort-options">
-          <object type="image/sbf+xml" data={sortIcon}>
-            <img
-              onClick={() => dispatch(rotateSortIcon())}
-              className={`icon-sort ${sortIconRotated ? "rotate" : ""}`}
-              src={sortIcon}
-              alt="sort"
-            />
-          </object>
+          <img
+            onClick={() => dispatch(rotateSortIcon())}
+            className={`icon-sort ${sortIconRotated ? "rotate" : ""}`}
+            src={sortIcon}
+            alt="sort"
+          />
           <select
             value={selectedValue}
             className="sort-select"
-            onChange={e => dispatch(setSelectValue(e.target.value))}
+            onChange={(e) => dispatch(setSelectValue(e.target.value))}
           >
             <option value="publishedDate">Published date</option>
             <option value="pageCount">Page Count</option>

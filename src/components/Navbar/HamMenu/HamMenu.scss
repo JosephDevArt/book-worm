@@ -24,14 +24,12 @@
 }
 
 .menu-btn__burger {
-  width: 50px;
-  height: 6px;
+  width: 40px;
+  height: 5px;
   background: $gray-dark;
   border-radius: 5px;
   transition: all 0.5s ease-in-out;
   @include phone-medium-portrait {
-    width: 40px;
-    height: 5px;
   }
 }
 
@@ -39,28 +37,24 @@
 .menu-btn__burger::after {
   content: "";
   position: absolute;
-  width: 50px;
-  height: 6px;
+  width: 40px;
+  height: 5px;
   background-color: $gray-dark;
   border-radius: 5px;
   transition: all 0.5s ease-in-out;
   @include phone-medium-portrait {
-    width: 40px;
-    height: 5px;
   }
 }
 
 .menu-btn__burger:before {
-  transform: translateY(-16px);
+  transform: translateY(-14px);
   @include phone-medium-portrait {
-    transform: translateY(-14px);
   }
 }
 
 .menu-btn__burger:after {
-  transform: translateY(16px);
+  transform: translateY(14px);
   @include phone-medium-portrait {
-    transform: translateY(14px);
   }
 }
 

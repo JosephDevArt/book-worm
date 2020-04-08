@@ -1,3 +1,6 @@
 .read-later-section {
   @include section-inside-main();
+  @include phone-small-landscape {
+    padding: 0 1rem 1rem;
+  }
 }

@@ -4,68 +4,68 @@ import {
   SET_TOTAL_FETCHED_BOOKS,
   SET_ERROR_MESSAGE,
   SET_IS_FETCHING,
-  SET_SUBMITTED_INPUT
+  SET_SUBMITTED_INPUT,
 } from "./actionTypes";
 
 import { handleFetch } from "./api";
 import { batch } from "react-redux";
 
-export const setSubmittedInput = submittedInput => {
+export const setSubmittedInput = (submittedInput) => {
   return {
     type: SET_SUBMITTED_INPUT,
-    submittedInput
+    submittedInput,
   };
 };
 
-export const setTotalFetchedBooks = totalFetchedBooks => {
+export const setTotalFetchedBooks = (totalFetchedBooks) => {
   return {
     type: SET_TOTAL_FETCHED_BOOKS,
-    totalFetchedBooks
+    totalFetchedBooks,
   };
 };
 
-export const setErrorMessage = errorMessage => {
+export const setErrorMessage = (errorMessage) => {
   return {
     type: SET_ERROR_MESSAGE,
-    errorMessage
+    errorMessage,
   };
 };
 
-export const loadBooks = books => {
+export const loadBooks = (books) => {
   return {
     type: LOAD_BOOKS,
-    books
+    books,
   };
 };
 
-export const loadBooksOnScroll = newBooks => {
+export const loadBooksOnScroll = (newBooks) => {
   return {
     type: LOAD_BOOKS_ON_SCROLL,
-    newBooks
+    newBooks,
   };
 };
 
-export const setIsFetching = bool => {
+export const setIsFetching = (bool) => {
   return {
     type: SET_IS_FETCHING,
-    bool
+    bool,
   };
 };
 
 //---- REDUX THUNK ---- async actions
 
-export const getBooks = userInput => {
+export const getBooks = (userInput) => {
   if (!userInput.trim()) {
     throw Error;
   }
   return (dispatch, getState) => {
-    const { errorMessage } = getState().booksReducer;
+    const { errorMessage } = getState().books;
     batch(() => {
       dispatch(setSubmittedInput(userInput));
       dispatch(setIsFetching(true));
     });
     handleFetch(userInput, 0)
-      .then(data => {
+      .then((data) => {
         if (data.totalItems === 0) {
           batch(() => {
             dispatch(setIsFetching(false));
@@ -82,20 +82,16 @@ export const getBooks = userInput => {
           // });
         }
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(setIsFetching(false));
         console.log(err);
       });
   };
 };
 
-export const getBooksOnScroll = books => {
+export const getBooksOnScroll = (books) => {
   return (dispatch, getState) => {
-    const {
-      isFetching,
-      submittedInput,
-      totalFetchedBooks
-    } = getState().booksReducer;
+    const { isFetching, submittedInput, totalFetchedBooks } = getState().books;
     if (isFetching || books.length < 20 || books.length == totalFetchedBooks) {
       /*
        prevent invoking if:
@@ -111,7 +107,7 @@ export const getBooksOnScroll = books => {
     if (pageOffset > lastLiOffset) {
       //---ABOVE--- check if last book at the bottom of the page
       dispatch(setIsFetching(true));
-      handleFetch(submittedInput, books.length).then(data => {
+      handleFetch(submittedInput, books.length).then((data) => {
         batch(() => {
           dispatch(loadBooksOnScroll(data.items)); //load first 20 books + 20 books each time when scrolled to the bottom
           dispatch(setIsFetching(false));

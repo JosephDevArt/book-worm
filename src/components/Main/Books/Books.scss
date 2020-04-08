@@ -2,28 +2,48 @@
   @include section-inside-main;
   .search-books {
     transition: 1s ease;
+    margin-top: 180px;
     @include flexbox();
     @include justify-content(center);
+    @include tablet-landscape {
+      margin-top: 0;
+    }
     .input-search-books {
-      padding: 0.8rem 0.8rem;
       color: $black-text;
+      padding: 0 0.8rem 0;
       width: 400px;
       border: 1px solid $primary-purple;
       font-size: 1.2rem;
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
+      @include tablet-landscape {
+        width: 100%;
+      }
+      @include phone-medium-portrait {
+        font-size: 1rem;
+      }
     }
     .btn-search {
-      padding: 0.8rem 0.8rem;
       border: none;
+      padding: 0.8rem;
       background-color: $primary-purple;
       color: white;
       font-size: 1.2rem;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
       cursor: pointer;
+      display: flex;
+      align-items: center;
       &:hover {
         background-color: $primary-purple-hover;
+      }
+      .fa-spin {
+        font-size: 1rem;
+        margin-left: 0.3rem;
+      }
+      @include phone-medium-portrait {
+        font-size: 1rem;
+        padding: 0.6rem;
       }
     }
   }
@@ -35,14 +55,24 @@
     text-transform: capitalize;
     font-weight: bold;
   }
+  .move-top {
+    //push search form to the top
+    margin-top: 50px;
+    @include tablet-landscape {
+      margin-top: 0;
+    }
+  }
 }
 .books {
   display: grid;
-  grid-column-gap: 3em;
-  grid-row-gap: 4em;
+  grid-column-gap: 2.5rem;
+  grid-row-gap: 4rem;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-template-rows: auto;
   padding-bottom: 2rem;
+  @include tablet {
+    grid-column-gap: 1.5rem;
+  }
 }
 
 .more-content-load-text {

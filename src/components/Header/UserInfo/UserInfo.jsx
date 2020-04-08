@@ -13,7 +13,7 @@ const UserInfo = (props) => {
   const [userImg, setUserImg] = useState("");
   const [isAuthorizing, setIsAuthorizing] = useState(false);
 
-  const isAuthorized = useSelector((state) => state.userReducer.isAuthorized);
+  const isAuthorized = useSelector((state) => state.user.isAuthorized);
 
   const logIn = () => {
     //waiting for facebook response

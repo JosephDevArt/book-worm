@@ -3,9 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { slideNavbar } from "./../../../actions/navActions";
 function LinkComp({ to, iconName, name }) {
-  const readLaterBooks = useSelector(
-    (state) => state.readLaterReducer.readLaterBooks
-  );
+  const readLaterBooks = useSelector((state) => state.readLater.readLaterBooks);
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(slideNavbar());

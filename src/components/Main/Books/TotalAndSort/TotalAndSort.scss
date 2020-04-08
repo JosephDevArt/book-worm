@@ -7,7 +7,14 @@
   .sort-text {
     font-size: 1.5rem;
     opacity: 0.7;
-    margin-bottom: 8px;
+    margin-bottom: 0.6rem;
+    @include tablet {
+      font-size: 1.2rem;
+      margin-bottom: 0.4rem;
+    }
+    @include phone-medium-portrait {
+      font-size: 1rem;
+    }
   }
   .total-text {
     text-align: left;
@@ -18,6 +25,16 @@
   .num-books {
     font-size: 2.2rem;
     color: $gray-dark;
+    white-space: nowrap;
+    @include tablet {
+      font-size: 1.8rem;
+    }
+    @include phone-medium-portrait {
+      font-size: 1.4rem;
+    }
+    @include phone-small-portrait {
+      font-size: 1.2rem;
+    }
   }
   .sort-by {
     .sort-options {
@@ -33,6 +50,15 @@
         display: flex;
         background-color: $gray-dark;
         transition: 0.5s ease;
+        @include tablet {
+          width: 40px;
+        }
+        @include phone-medium-portrait {
+          width: 35px;
+        }
+        @include phone-small-portrait {
+          width: 30px;
+        }
       }
       .sort-select {
         font-size: 1.6rem;
@@ -41,6 +67,16 @@
         color: $almost-white;
         border: none;
         margin-left: 2px;
+        @include tablet {
+          font-size: 1.4rem;
+        }
+        @include phone-medium-portrait {
+          font-size: 1.2rem;
+        }
+        @include phone-small-portrait {
+          font-size: 1rem;
+          padding: 0.2rem;
+        }
       }
     }
   }

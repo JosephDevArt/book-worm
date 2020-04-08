@@ -7,25 +7,25 @@ function Users({ users }) {
   const dispatch = useDispatch();
 
   const { followingUsers, isAuthorized } = useSelector(
-    state => ({
-      followingUsers: state.homeReducer.followingUsers,
-      isAuthorized: state.userReducer.isAuthorized
+    (state) => ({
+      followingUsers: state.home.followingUsers,
+      isAuthorized: state.user.isAuthorized,
     }),
     shallowEqual
   );
 
-  const followBtnClick = id => {
+  const followBtnClick = (id) => {
     dispatch(followUser(id));
   };
 
-  const unfollowBtnClick = id => {
+  const unfollowBtnClick = (id) => {
     dispatch(unfollowUser(id));
   };
 
   return (
     <div className="users">
       <h1>Users(10)</h1>
-      {users.map(item => (
+      {users.map((item) => (
         <User
           key={item.id}
           id={item.id}
@@ -34,8 +34,8 @@ function Users({ users }) {
           isAuthorized={isAuthorized}
           followingUsers={followingUsers}
           catchPhrase={item.company.catchPhrase}
-          followBtnClick={id => followBtnClick(id)}
-          unfollowBtnClick={id => unfollowBtnClick(id)}
+          followBtnClick={(id) => followBtnClick(id)}
+          unfollowBtnClick={(id) => unfollowBtnClick(id)}
         />
       ))}
     </div>

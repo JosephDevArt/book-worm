@@ -5,7 +5,7 @@ function Post({ post }) {
     <li className="user">
       <img src={userImg} />
       <div className="user-info">
-        <h3>User {post.id}</h3>
+        <h3>Post {post.id}</h3>
         <span>{post.title}</span>
         <p>{post.body}</p>
       </div>

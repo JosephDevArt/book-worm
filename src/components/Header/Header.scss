@@ -1,17 +1,16 @@
 header {
+  @include flexbox-all(row, flex-end, center);
+  grid-area: header;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 1px 3px #dddddd;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 1.4rem;
+  padding: 0 2rem;
   position: sticky;
   top: 0;
   z-index: 2;
-  grid-area: headerr;
   @include phone-medium-landscape {
-    justify-content: flex-start;
+    @include justify-content(flex-start);
     padding: 0 2.3rem;
+    z-index: 5;
   }
   @include phone-small-landscape {
     padding: 0 1rem;

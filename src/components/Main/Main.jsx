@@ -1,11 +1,11 @@
 import React from "react";
-import "./Main.scss";
+
+import { Route, Switch } from "react-router-dom";
+
 import Home from "./Home/Home";
 import Posts from "./Posts/Posts";
 import ReadLater from "./ReadLater/ReadLater";
 import Books from "./Books/Books";
-
-import { Route, Switch } from "react-router-dom";
 
 function Main() {
   return (

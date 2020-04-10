@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import emailjs from "emailjs-com";
-import { useState } from "react";
+
 function SendReview() {
   const [isLoading, setIsLoading] = useState(false);
-  const [successResponseMessage, setSuccessResponseMessage] = useState("");
-  const [errorResponseMessage, setErrorResponseMessage] = useState("");
+  // const [successResponseMessage, setSuccessResponseMessage] = useState("");
+  // const [errorResponseMessage, setErrorResponseMessage] = useState("");
+
+  const [responseMessage, setResponseMessage] = useState("");
 
   function sendEmail(e) {
     e.preventDefault();
@@ -18,13 +20,11 @@ function SendReview() {
       )
       .then(
         (result) => {
-          setSuccessResponseMessage("Success");
-          errorResponseMessage && setErrorResponseMessage("");
+          setResponseMessage("Success");
           setIsLoading(false);
         },
         (error) => {
-          setErrorResponseMessage("Something went wrong");
-          successResponseMessage && setSuccessResponseMessage("");
+          setResponseMessage("Something went wrong");
           setIsLoading(false);
         }
       );
@@ -34,28 +34,41 @@ function SendReview() {
       <i className="fas fa-users"></i>
       <h2>Send review</h2>
       <p>We would like to hear from you</p>
+
       <form className="contact-form" onSubmit={sendEmail}>
-        <label>Name</label>
+        <label htmlFor="name">Name</label>
         <input
           required
           placeholder="Enter name..."
           type="text"
+          id="name"
           name="user_name"
         />
-        <label>Email</label>
+        <label htmlFor="email">Email</label>
         <input
           required
           placeholder="Enter email..."
           type="email"
+          id="email"
           name="user_email"
         />
-        <label>Message</label>
-        <textarea required placeholder="Enter message..." name="message" />
-        {successResponseMessage ? (
-          <p className="msg-success">{successResponseMessage}</p>
-        ) : errorResponseMessage ? (
-          <p className="msg-error">{errorResponseMessage}</p>
-        ) : null}
+        <label htmlFor="message">Message</label>
+        <textarea
+          id="message"
+          required
+          placeholder="Enter message..."
+          name="message"
+        />
+        {responseMessage && (
+          <p
+            className={
+              responseMessage == "Success" ? "msg-success" : "msg-error"
+            }
+          >
+            {responseMessage}
+          </p>
+        )}
+
         <button type="submit">
           Send Invite {isLoading && <i className="fa fa-refresh fa-spin"></i>}
         </button>

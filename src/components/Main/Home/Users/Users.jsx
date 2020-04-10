@@ -1,7 +1,9 @@
 import React from "react";
-import User from "./User/User";
-import { followUser, unfollowUser } from "../../../../actions/homeActions";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
+
+import { followUser, unfollowUser } from "../../../../actions/homeActions";
+
+import User from "./User/User";
 
 function Users({ users }) {
   const dispatch = useDispatch();

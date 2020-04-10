@@ -1,11 +1,13 @@
 import React from "react";
 import { useSelector, shallowEqual } from "react-redux";
+
 import Users from "./Users/Users";
 import Posts from "./Posts/Posts";
 import WeHave from "./WeHave/WeHave";
 import BookWorm from "./BookWorm/BookWorm";
 import MyNetwork from "./MyNetwork/MyNetwork";
 import SendReview from "./SendReview/SendReview";
+
 const Home = () => {
   const { users, followingUsers, posts } = useSelector(
     (state) => ({
@@ -15,6 +17,7 @@ const Home = () => {
     }),
     shallowEqual
   );
+
   return (
     <section className="home-section">
       <WeHave />

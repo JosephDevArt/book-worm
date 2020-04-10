@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import Book from "./Book/Book";
-import TotalAndSort from "./TotalAndSort/TotalAndSort";
 import { throttle } from "lodash";
+
 import { getBooks, getBooksOnScroll } from "../../../actions/booksActions";
-import { useRef } from "react";
+
+import Book from "../shared/Book/Book";
+import TotalAndSort from "../shared/TotalAndSort/TotalAndSort";
 
 function Books() {
   const dispatch = useDispatch();
+
   const { books, errorMessage, isFetching } = useSelector(
     (state) => ({
       books: state.books.books,
@@ -16,6 +18,7 @@ function Books() {
     }),
     shallowEqual
   );
+
   const inputEl = useRef(null);
 
   const searchBtnClick = () => {
@@ -45,8 +48,8 @@ function Books() {
           type="text"
           className="input-search-books"
           placeholder="Search books..."
-          // required
-          ref={inputEl} //extract user input
+          required
+          ref={inputEl}
         ></input>
         <button
           type="submit"
@@ -56,10 +59,11 @@ function Books() {
         >
           Search
           {isFetching && <i className="fa fa-refresh fa-spin"></i>}
-          {/*Add spinner animation on loading books */}
+          {/*add spinner animation on loading books */}
         </button>
       </form>
 
+      {/*if books not found*/}
       <p className="error-message">{errorMessage}</p>
 
       <div className="search-results">

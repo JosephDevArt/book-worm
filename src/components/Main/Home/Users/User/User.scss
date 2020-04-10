@@ -3,11 +3,11 @@
   @include align-items(center);
   padding: 1.6rem 1.2rem;
   border-bottom: 1px solid $border-gray-light;
-  @include phone-small-portrait {
-    padding: 1.2rem 0.8rem;
-  }
   &:last-child {
     border: none;
+  }
+  @include phone-small-portrait {
+    padding: 1.2rem 0.8rem;
   }
   img {
     width: 60px;

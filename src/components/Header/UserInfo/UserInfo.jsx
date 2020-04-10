@@ -1,19 +1,24 @@
-import React, { useState, useEffect } from "react";
-import defaultUserImg from "./default-user-icon.jpg";
+import React, { useState } from "react";
+import { useDispatch, useSelector, batch } from "react-redux";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
-import { setIsAuthorized } from "./../../../actions/userActions";
-import { useDispatch, useSelector } from "react-redux";
-import { loadReadLaterBooks } from "./../../../actions/readLaterActions";
-import { loadUsers, setFollowingUsers } from "./../../../actions/homeActions";
 
-const UserInfo = (props) => {
+import defaultUserImg from "./default-user-icon.jpg";
+
+import { setIsAuthorized } from "./../../../actions/userActions";
+import { loadReadLaterBooks } from "./../../../actions/readLaterActions";
+import { setFollowingUsers } from "./../../../actions/homeActions";
+
+const UserInfo = () => {
   const dispatch = useDispatch();
 
-  const [userName, setUserName] = useState("");
-  const [userImg, setUserImg] = useState("");
-  const [isAuthorizing, setIsAuthorizing] = useState(false);
-
   const isAuthorized = useSelector((state) => state.user.isAuthorized);
+
+  const [userInfo, setUserInfo] = useState({
+    userName: "",
+    userImg: "",
+  });
+
+  const [isAuthorizing, setIsAuthorizing] = useState(false);
 
   const logIn = () => {
     //waiting for facebook response
@@ -22,24 +27,32 @@ const UserInfo = (props) => {
 
   const responseFacebook = (response) => {
     //received response
-    setUserName(response.name);
-    setUserImg(response.picture.data.url);
+    setUserInfo({
+      userName: response.name,
+      userImg: response.picture.data.url,
+    });
     setIsAuthorizing(false);
+
     dispatch(setIsAuthorized(true));
   };
 
   const logOut = () => {
-    dispatch(setIsAuthorized(false));
-    dispatch(loadReadLaterBooks([]));
-    dispatch(setFollowingUsers([]));
+    // remove all books from ReadLater,
+    // remove all users from following
+    batch(() => {
+      dispatch(setIsAuthorized(false));
+      dispatch(loadReadLaterBooks([]));
+      dispatch(setFollowingUsers([]));
+    });
   };
 
   let info;
+
   if (isAuthorized) {
     info = (
       <>
-        <p className="user_name">{userName}</p>
-        <img src={userImg} alt="user" />
+        <p className="user-name">{userInfo.userName}</p>
+        <img src={userInfo.userImg} alt="user" />
         <button className="logout-button" onClick={logOut}>
           <i className="fas fa-sign-out-alt"></i>
           <span>Log out</span>
@@ -49,7 +62,7 @@ const UserInfo = (props) => {
   } else {
     info = (
       <>
-        <p className="user_name">Welcome to Book worm</p>
+        <p className="user-name">Welcome to Book worm</p>
         <img
           src={defaultUserImg}
           className={isAuthorizing ? "animate-spin" : null}
@@ -71,7 +84,7 @@ const UserInfo = (props) => {
       </>
     );
   }
-  return <div className="user_account">{info}</div>;
+  return <div className="user-account">{info}</div>;
 };
 
 export default UserInfo;

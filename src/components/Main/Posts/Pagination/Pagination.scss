@@ -5,7 +5,6 @@
   }
   ul {
     @include flexbox-all(row, center, center);
-
     button {
       padding: 0.4rem 1.6rem;
       background: none;
@@ -30,8 +29,8 @@
       }
     }
     .active {
-      color: $primary-purple !important;
-      font-weight: bold !important;
+      color: $primary-purple;
+      font-weight: bold;
     }
   }
 }

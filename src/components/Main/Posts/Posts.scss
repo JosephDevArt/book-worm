@@ -1,10 +1,10 @@
 .posts-section {
   @include section-inside-main();
   @include flexbox-all(column, center, center);
-  @import "./Pagination/Pagination.scss";
-  @import "./Post/Post.scss";
   @include tablet {
     @include flexbox-all(column, space-between, center);
     padding: 2.5rem 0;
   }
+  @import "./Pagination/Pagination.scss";
+  @import "./Post/Post.scss";
 }

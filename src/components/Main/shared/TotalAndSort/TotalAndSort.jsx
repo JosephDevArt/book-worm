@@ -1,14 +1,18 @@
-import React, { memo, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import sortIcon from "../iconfinder-icon.svg";
-import { loadBooks } from "./../../../../actions/booksActions";
-import { loadReadLaterBooks } from "./../../../../actions/readLaterActions";
+
+import { ReactComponent as SortIcon } from "./sortIcon.svg";
+
+import { loadBooks } from "../../../../actions/booksActions";
+import { loadReadLaterBooks } from "../../../../actions/readLaterActions";
 import {
   rotateSortIcon,
   setSelectValue,
-} from "./../../../../actions/sortActions";
+} from "../../../../actions/sortActions";
+
 const TotalAndSort = ({ scope }) => {
   const dispatch = useDispatch();
+
   const {
     selectedValue,
     sortIconRotated,
@@ -86,11 +90,9 @@ const TotalAndSort = ({ scope }) => {
       <div className="sort-by">
         <p className="sort-text">Sort by</p>
         <div className="sort-options">
-          <img
+          <SortIcon
             onClick={() => dispatch(rotateSortIcon())}
             className={`icon-sort ${sortIconRotated ? "rotate" : ""}`}
-            src={sortIcon}
-            alt="sort"
           />
           <select
             value={selectedValue}

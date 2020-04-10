@@ -1,8 +1,11 @@
-.user-and-info {
-  width: 100%;
+.post {
   @include flexbox();
   @include align-items(center);
+  width: 100%;
   padding: 1.2rem;
+  height: 110px;
+  overflow: hidden;
+  border-bottom: 1px solid $border-gray-light;
   @include tablet-landscape {
     padding: 0.8rem;
   }
@@ -12,9 +15,6 @@
   @include phone-small-portrait {
     padding: 1rem;
   }
-  height: 110px;
-  overflow: hidden;
-  border-bottom: 1px solid $border-gray-light;
   img {
     width: 45px;
     border-radius: 50%;

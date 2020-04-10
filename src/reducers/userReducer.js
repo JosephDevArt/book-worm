@@ -1,8 +1,7 @@
-import { SET_IS_AUTHORIZED, RENDERED } from "../actions/actionTypes";
+import { SET_IS_AUTHORIZED } from "../actions/actionTypes";
 
 const initialState = {
   isAuthorized: false,
-  rendered: 0
 };
 
 const userReducer = (state = initialState, action) => {
@@ -10,15 +9,10 @@ const userReducer = (state = initialState, action) => {
     case SET_IS_AUTHORIZED: {
       return {
         ...state,
-        isAuthorized: action.isAuthorized
+        isAuthorized: action.isAuthorized,
       };
     }
-    case RENDERED: {
-      return {
-        ...state,
-        rendered: state.rendered + 1
-      };
-    }
+
     default:
       return state;
   }

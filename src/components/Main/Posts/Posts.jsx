@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+
 import Pagination from "./Pagination/Pagination";
 import Post from "./Post/Post";
+
 function Posts() {
   const { posts } = useSelector((state) => ({
     posts: state.posts.posts,
   }));
+
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(6);
   const [firstPage, setFirstPage] = useState(1);
@@ -24,6 +27,7 @@ function Posts() {
     setFirstPage(firstPage + pagesPerPortion);
     setLastPage(lastPage + pagesPerPortion);
   };
+
   const prevPagesBtnClick = () => {
     setFirstPage(firstPage - pagesPerPortion);
     setLastPage(lastPage - pagesPerPortion);

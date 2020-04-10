@@ -22,22 +22,21 @@
   @include tablet {
     grid-template-rows: 2fr 1fr repeat(3, min-content);
   }
+  .posts-and-send {
+    grid-area: posts-and-send;
+    @include flexbox();
+    @include flex-direction(column);
+    @include tablet-landscape {
+      @include flex-direction(row);
+    }
+    @include tablet {
+      @include flex-direction(column);
+    }
+  }
   @import "./WeHave/WeHave.scss";
   @import "./MyNetwork/MyNetwork.scss";
   @import "./BookWorm/BookWorm.scss";
   @import "./Posts/Posts.scss";
   @import "./Users/Users.scss";
   @import "./SendReview/SendReview.scss";
-}
-
-.posts-and-send {
-  grid-area: posts-and-send;
-  @include flexbox();
-  @include flex-direction(column);
-  @include tablet-landscape {
-    @include flex-direction(row);
-  }
-  @include tablet {
-    @include flex-direction(column);
-  }
 }

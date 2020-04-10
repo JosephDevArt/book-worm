@@ -1,30 +1,36 @@
 .book {
+  background-color: rgb(230, 230, 230); //before image is loaded
   width: 100%;
   height: 340px;
   position: relative;
-  max-width: 325px;
   justify-self: center;
+  max-width: 325px;
   @include phone-small-landscape {
     max-width: 550px;
     height: 380px;
-  }
-  .title-outer {
-    color: $black-text;
-    font-size: 0.9rem;
   }
   img {
     width: 100%;
     height: 100%;
   }
+  .title-outer {
+    color: $black-text;
+    font-size: 0.9rem;
+  }
+
   &:hover {
+    img {
+      opacity: 0;
+      visibility: hidden;
+    }
     .title-outer {
       display: none;
     }
     .book-info-inner {
       @include flexbox();
-      height: 115%;
-      transform: translate(-6%, -5%);
       width: 115%;
+      height: 115%;
+      transform: translate(-6.5%, -5%);
       background-color: $gray-dark;
       @include tablet {
         width: 110%;
@@ -38,17 +44,9 @@
       }
       @include phone-medium-portrait {
         width: 100%;
-        height: 110%;
-        transform: translate(0, -5%);
+        height: 100%;
+        transform: translate(0, 0);
       }
-      @include phone-iphoneX {
-        transform: translate(0, -5%);
-        width: 100%;
-      }
-    }
-    img {
-      opacity: 0;
-      visibility: hidden;
     }
   }
 }

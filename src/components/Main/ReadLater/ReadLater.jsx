@@ -1,7 +1,9 @@
 import React from "react";
-import Book from "../Books/Book/Book";
-import TotalAndSort from "../Books/TotalAndSort/TotalAndSort";
 import { useSelector } from "react-redux";
+
+import Book from "../shared/Book/Book";
+import TotalAndSort from "../shared/TotalAndSort/TotalAndSort";
+
 function ReadLater() {
   const readLaterBooks = useSelector((state) => state.readLater.readLaterBooks);
 

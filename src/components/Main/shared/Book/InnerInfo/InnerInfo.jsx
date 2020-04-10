@@ -2,16 +2,17 @@ import React from "react";
 
 function InnerInfo(props) {
   const {
-    title = "no title",
+    title,
     description = "This book doesn't have a description",
     pageCount = "unknown num. of",
     categories = "no category",
     authors,
     averageRating,
     publishedDate,
-    previewLink
+    previewLink,
   } = props.info.volumeInfo;
-  const { isAuthorized, activeClass, removeBtnClick, addBtnClick } = props;
+
+  const { isAuthorized, active, removeBtnClick, addBtnClick } = props;
 
   let button;
 
@@ -22,7 +23,7 @@ function InnerInfo(props) {
         onClick={addBtnClick}
         className={`btn-add ${
           //add warning ('log in to add') if not Authorized and clicked on Read Later btn
-          isAuthorized ? null : activeClass ? "log-in-warning" : null
+          isAuthorized ? null : active ? "log-in-warning" : null
         }`}
         title="add to read later"
       >
@@ -32,10 +33,10 @@ function InnerInfo(props) {
   } else {
     button = (
       <button
-        title="remove from read later"
         type="button"
-        className="btn-remove"
         onClick={removeBtnClick}
+        className="btn-remove"
+        title="remove from read later"
       >
         Remove
       </button>
@@ -71,12 +72,16 @@ function InnerInfo(props) {
           {publishedDate ? `${publishedDate.slice(0, 4)}` : "unknown"} year.
         </p>
       </div>
-      {/* 200 */}
+
       <p className="description-inner">{description}</p>
+
       <div className="book-btns-inner">
+        {/* fadeout description text at the bottom */}
         <div className="fadeout"></div>
 
         {button}
+        {/* btn ReadLater or Remove (depends on the scope) */}
+
         <a
           className="btn-preview"
           href={previewLink}

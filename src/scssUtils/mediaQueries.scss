@@ -6,7 +6,7 @@ $phone-medium-landscape: 736px;
 $tablet: 814px;
 $tablet-landscape: 1024px;
 $laptop: 1440px;
-$dekstop-large: 1280px;
+$desktop-large: 1920px;
 
 @mixin phone-iphoneX {
   @media (max-width:#{$phone-iphoneX}) {
@@ -53,48 +53,8 @@ $dekstop-large: 1280px;
     @content;
   }
 }
-
-@mixin laptop {
-  @media (max-width:#{$laptop}) {
-    @content;
-  }
-}
 @mixin desktop-large {
-  @media (max-width:#{$desktop-large}) {
+  @media (min-width:#{$desktop-large}) {
     @content;
   }
 }
-// @mixin desktop {
-//   @media (max-width:#{$desktop}) {
-//     @content;
-//   }
-// }
-
-// /@mixin medium-mobile {
-//   @media (min-width : #{$medium-mobile-screen}) {
-//     @content;
-//   }
-
-// @media (min-width: 1024px) {
-
-// }
-
-// @media (min-width: 1280px) {
-
-// }
-
-// edium-mobile-screen: 370px;
-// $large-mobile-screen: 479px;
-// $large-tablet-screen: 1024px;
-// $laptop-screen: 1200px;
-// $desktop-screen: 2000px;
-// @mixin medium-mobile {
-//   @media (min-width : #{$medium-mobile-screen}) {
-//     @content;
-//   }
-// }
-// @mixin large-mobile {
-//   @media (min-width : #{$large-mobile-screen}) {
-//     @content;
-//   }
-// }

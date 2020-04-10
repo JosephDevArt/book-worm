@@ -1,30 +1,29 @@
 a {
   padding: 1.2rem 1rem;
   width: 98%;
-  display: flex;
-  align-items: center;
-}
-.link_icon {
-  margin-right: 1.5rem;
-  font-size: 1.4rem;
-  color: rgb(240, 240, 240);
-}
-
-.link_text {
-  color: rgb(240, 240, 240);
-  display: block;
-  transition: 0.2s ease;
+  @include flexbox();
+  @include align-items(center);
+  .link-icon {
+    margin-right: 1.5rem;
+    font-size: 1.4rem;
+    color: $almost-white;
+  }
+  .link-text {
+    color: $almost-white;
+    display: block;
+    transition: 0.2s ease;
+  }
 }
 
 .activeLink {
   transition: 0.2s ease;
-  background-color: white;
+  background-color: $almost-white;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
   i {
     color: $primary-purple;
   }
-  .link_text {
+  .link-text {
     color: $black-text;
   }
   .counter {
@@ -35,9 +34,8 @@ a {
 
 .counter {
   color: $primary-purple;
-  align-self: flex-end;
   margin-left: 1rem;
-  background-color: rgb(255, 255, 255);
+  background-color: $almost-white;
   width: 35px;
   text-align: center;
   height: 20px;
@@ -46,24 +44,19 @@ a {
 
 @include phone-medium-landscape {
   a {
-    justify-content: flex-end;
+    @include justify-content(flex-end);
     width: 100%;
+    .link-text {
+      order: 2;
+    }
   }
   .activeLink {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }
-  i {
-    margin-left: 1rem;
-  }
-  .link_text {
-    order: 2;
-  }
-  .link_icon {
-    order: 1;
-  }
   .counter {
     margin-left: 0;
     margin-right: 1rem;
+    order: 1;
   }
 }

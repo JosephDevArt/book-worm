@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import userImg from "../../userImg.jpg";
 
-function User({
-  id,
-  name,
-  username,
-  catchPhrase,
-  isAuthorized,
-  followingUsers,
-  followBtnClick,
-  unfollowBtnClick
-}) {
+function User(props) {
+  const {
+    id,
+    name,
+    username,
+    catchPhrase,
+    isAuthorized,
+    followingUsers,
+    followBtnClick,
+    unfollowBtnClick,
+  } = props;
+
   const [active, setActive] = useState(false);
+
   const buttonClicked = () => {
     //add warning ('log in to follow') if not Authorized and clicked on Follow btn
     setActive(true);
@@ -25,7 +28,7 @@ function User({
         <span>{username}</span>
         <p>{catchPhrase}</p>
       </div>
-      {followingUsers.some(user => user.name == name) ? (
+      {followingUsers.some((user) => user.name == name) ? (
         <button
           className="btn-unfollow btn"
           onClick={() => unfollowBtnClick(id)}

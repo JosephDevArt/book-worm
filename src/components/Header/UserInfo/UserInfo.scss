@@ -1,11 +1,11 @@
-.user_account {
+.user-account {
+  @include align-items(center);
   display: grid;
   grid-template-areas:
     ". img ."
     "name img ."
     ". img logout";
   grid-gap: 0.4rem;
-  align-items: center;
   @include phone-medium-landscape {
     grid-template-areas:
       "img . ."
@@ -13,16 +13,39 @@
       "img logout logout";
     grid-row-gap: 0.2rem;
   }
-}
-.user_account img {
-  grid-area: img;
-  width: 45px;
-  height: 45px;
-  border: 1px solid rgb(255, 0, 255);
-  border-radius: 50%;
-  @include phone-medium-landscape {
-    width: 55px;
-    height: 55px;
+  img {
+    grid-area: img;
+    width: 45px;
+    height: 45px;
+    border: 1px solid rgb(255, 0, 255);
+    border-radius: 50%;
+    @include phone-medium-landscape {
+      width: 55px;
+      height: 55px;
+    }
+  }
+  .user-name {
+    grid-area: name;
+    color: $gray-dark;
+    @include phone-medium-portrait {
+      font-size: 0.9rem;
+    }
+    @include phone-small-portrait {
+      width: 120px;
+      line-height: 1;
+    }
+  }
+  .login-button,
+  .logout-button {
+    grid-area: logout;
+    font-family: "Montserrat";
+    color: $gray-dark;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    @include flexbox();
+    @include align-items(center);
   }
 }
 
@@ -39,29 +62,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-.user_name {
-  color: rgb(101, 101, 101);
-  text-shadow: 1px 1px 2px rgb(211, 211, 211);
-  grid-area: name;
-  @include phone-medium-portrait {
-    font-size: 0.9rem;
-  }
-  @include phone-small-portrait {
-    width: 120px;
-    line-height: 1;
-  }
-}
-
-.login-button,
-.logout-button {
-  grid-area: logout;
-  color: rgb(101, 101, 101);
-  background: none;
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-  @include flexbox();
-  align-items: center;
-  font-family: "Montserrat";
 }

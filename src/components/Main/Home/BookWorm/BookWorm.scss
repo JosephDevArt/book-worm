@@ -1,17 +1,20 @@
 .book-worm {
   @include home-grid-box();
+  @include flexbox-all(column, center, center);
   grid-area: book-worm;
   padding: 2rem;
-  color: $black-text;
   border-radius: $home-box-border-radius;
-  @include flexbox-all(column, center, center);
+  text-align: center;
+  &:before {
+    @include home-text-above-box("Welcome");
+  }
   @include phone-small-portrait {
     padding: 2rem 1rem;
   }
-  text-align: center;
   h1 {
     font-size: 2rem;
     color: $black-text;
+    white-space: nowrap;
     @include laptop {
       font-size: 1.6rem;
     }
@@ -40,10 +43,6 @@
     }
     span {
       white-space: nowrap;
-      z-index: 2;
     }
-  }
-  &:before {
-    @include home-text-above-box("Welcome");
   }
 }

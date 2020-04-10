@@ -13,11 +13,13 @@
 //-----HEADER-----
 
 //-----NAV-----
-
 @import "./components/Navbar/Nav.scss";
 @import "./components/Navbar/HamMenu/HamMenu.scss";
-
 //-----NAV-----
+
+//-----MAIN-----
+@import "./components/Main/Main.scss";
+//-----MAIN-----
 
 //-----HOME-----
 @import "./components/Main/Home/Home.scss";
@@ -25,9 +27,9 @@
 
 //-----BOOKS-----
 @import "./components/Main/Books/Books.scss";
-@import "./components/Main/Books/Book/Book.scss";
-@import "./components/Main/Books/Book/InnerInfo/InnerInfo.scss";
-@import "./components/Main/Books/TotalAndSort/TotalAndSort.scss";
+@import "./components/Main/shared/Book/Book.scss";
+@import "./components/Main/shared/Book/InnerInfo/InnerInfo.scss";
+@import "./components/Main/shared/TotalAndSort/TotalAndSort.scss";
 @import "./components/Main/ReadLater/ReadLater.scss";
 //-----BOOKS-----
 

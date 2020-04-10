@@ -1,20 +1,23 @@
-import React from "react";
-import Post from "./Post/Post";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { useState, useEffect } from "react";
 import { debounce } from "lodash";
+
+import Post from "./Post/Post";
+
 function Posts({ posts }) {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
   const handleResize = debounce(() => {
     setScreenWidth(window.innerWidth);
-    console.log(screenWidth);
   }, 1000);
+
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   });
+
   return (
     <div className="posts-box">
       {/*load more posts on smaller screens*/}

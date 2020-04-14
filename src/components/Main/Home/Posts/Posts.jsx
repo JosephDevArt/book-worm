@@ -14,6 +14,7 @@ function Posts({ posts }) {
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => {
+      handleResize.cancel(); //cancel debounce
       window.removeEventListener("resize", handleResize);
     };
   });

@@ -17,7 +17,7 @@ function LinkComp({ to, iconName, name }) {
   return (
     <li>
       <NavLink onClick={handleClick} exact to={to} activeClassName="activeLink">
-        <i className={`${iconName} link-icon`}></i>
+        <i samesite="None" className={`${iconName} link-icon`}></i>
         <span className="link-text">{name}</span>
         {name === "Read Later" ? (
           <span className="counter">{readLaterBooks.length}</span>

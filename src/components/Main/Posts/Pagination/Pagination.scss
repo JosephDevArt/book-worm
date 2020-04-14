@@ -5,28 +5,27 @@
   }
   ul {
     @include flexbox-all(row, center, center);
-    button {
-      padding: 0.4rem 1.6rem;
-      background: none;
-      border: 1px solid $border-gray-light;
-      border-radius: 4px;
-      color: $black-text;
+    .prevBtn,
+    .nextBtn,
+    .numBtn {
       cursor: pointer;
+      background: none;
+      color: $black-text;
+      padding: 0.4rem 1.6rem;
+      @include phone-medium-portrait {
+        padding: 0.4rem 1rem;
+      }
       @include phone-small-portrait {
-        padding: 0.4rem 1.2rem;
+        padding: 0.4rem 0.8rem;
       }
     }
-    li {
-      a {
-        color: $black-text;
-        padding: 0.5rem 1rem;
-        @include phone-iphoneX {
-          padding: 0.8rem;
-        }
-        @include phone-small-portrait {
-          padding: 0.6rem;
-        }
-      }
+    .prevBtn,
+    .nextBtn {
+      border: 1px solid $border-gray-light;
+      border-radius: 4px;
+    }
+    .numBtn {
+      border: none;
     }
     .active {
       color: $primary-purple;

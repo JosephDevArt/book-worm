@@ -22,13 +22,13 @@ function User(props) {
 
   return (
     <div className="user">
-      <img src={userImg} />
+      <img src={userImg} alt="user" />
       <div className="user-info">
         <h3>{name}</h3>
         <span>{username}</span>
         <p>{catchPhrase}</p>
       </div>
-      {followingUsers.some((user) => user.name == name) ? (
+      {followingUsers.some((user) => user.name === name) ? (
         <button
           className="btn-unfollow btn"
           onClick={() => unfollowBtnClick(id)}
@@ -37,12 +37,13 @@ function User(props) {
         </button>
       ) : (
         <button
-          className={`btn-follow btn ${
-            //add warning ('log in to follow') if not Authorized and clicked on Follow btn
-            isAuthorized ? null : active ? "log-in-warning" : null
-          }`}
+          className="btn-follow btn"
           onClick={isAuthorized ? () => followBtnClick(id) : buttonClicked}
         >
+          {isAuthorized ? null : active ? (
+            //add warning ('log in to follow') if not Authorized and clicked on Follow btn
+            <span className="log-in-warning">Log in to add</span>
+          ) : null}
           Follow
         </button>
       )}

@@ -27,12 +27,17 @@
 
 //-----BOOKS-----
 @import "./components/Main/Books/Books.scss";
-@import "./components/Main/shared/Book/Book.scss";
-@import "./components/Main/shared/Book/InnerInfo/InnerInfo.scss";
-@import "./components/Main/shared/TotalAndSort/TotalAndSort.scss";
-@import "./components/Main/ReadLater/ReadLater.scss";
 //-----BOOKS-----
+
+//-----READ LATER-----
+@import "./components/Main/ReadLater/ReadLater.scss";
+//-----READ LATER-----
 
 //-----POSTS-----
 @import "./components/Main/Posts/Posts.scss";
 //-----POSTS-----
+
+//-----SHARED-----
+@import "./components/Main/shared/Book/Book.scss";
+@import "./components/Main/shared/Book/InnerInfo/InnerInfo.scss";
+@import "./components/Main/shared/TotalAndSort/TotalAndSort.scss";

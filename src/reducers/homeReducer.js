@@ -31,7 +31,7 @@ const homeReducer = (state = initialState, action) => {
       return {
         ...state,
         followingUsers: [
-          ...state.followingUsers.filter((user) => user.id != action.userId),
+          ...state.followingUsers.filter((user) => user.id !== action.userId),
         ],
       };
     }

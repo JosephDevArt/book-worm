@@ -54,9 +54,12 @@ export const setIsFetching = (bool) => {
 
 //---- REDUX THUNK ---- async actions
 
-export const getBooks = (userInput) => (dispatch, getState) => {
-  const { errorMessage } = getState().books;
+export const getBooks = (inputField) => (dispatch, getState) => {
+  inputField.blur();
 
+  const userInput = inputField.value;
+
+  const { errorMessage } = getState().books;
   batch(() => {
     dispatch(setSubmittedInput(userInput));
     dispatch(setIsFetching(true));
@@ -87,7 +90,7 @@ export const getBooks = (userInput) => (dispatch, getState) => {
 
 export const getBooksOnScroll = (books) => (dispatch, getState) => {
   const { isFetching, submittedInput, totalFetchedBooks } = getState().books;
-  if (isFetching || books.length < 20 || books.length == totalFetchedBooks) {
+  if (isFetching || books.length < 20 || books.length === totalFetchedBooks) {
     // prevent invoking if
     // waiting for server response or if
     // there is nothing to load

@@ -23,8 +23,10 @@ function Pagination(props) {
     <nav className="pagination">
       <ul>
         {/* show/hide prevBtn */}
-        {firstPage != 1 && (
-          <button onClick={() => prevPagesBtnClick()}>Prev</button>
+        {firstPage !== 1 && (
+          <button className="prevBtn" onClick={() => prevPagesBtnClick()}>
+            Prev
+          </button>
         )}
 
         {pageNumbers
@@ -32,19 +34,20 @@ function Pagination(props) {
           .filter((number) => number <= lastPage && number >= firstPage)
           .map((number) => (
             <li key={number}>
-              <a
-                className={currentPage == number ? "active" : ""}
+              <button
+                className={`numBtn ${currentPage === number ? "active" : ""}`}
                 onClick={() => paginate(number)}
-                href="#"
               >
                 {number}
-              </a>
+              </button>
             </li>
           ))}
 
         {/* show/hide nextBtn */}
         {lastPage < pages && (
-          <button onClick={() => nextPagesBtnClick()}>Next</button>
+          <button className="nextBtn" onClick={() => nextPagesBtnClick()}>
+            Next
+          </button>
         )}
       </ul>
     </nav>

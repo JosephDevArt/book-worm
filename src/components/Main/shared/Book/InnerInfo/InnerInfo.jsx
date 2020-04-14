@@ -18,26 +18,16 @@ function InnerInfo(props) {
 
   if (props.scope === "books") {
     button = (
-      <button
-        type="button"
-        onClick={addBtnClick}
-        className={`btn-add ${
-          //add warning ('log in to add') if not Authorized and clicked on Read Later btn
-          isAuthorized ? null : active ? "log-in-warning" : null
-        }`}
-        title="add to read later"
-      >
+      <button type="button" onClick={addBtnClick} className="btn-add">
+        {isAuthorized ? null : active ? (
+          <span className="log-in-warning">Log in to add</span>
+        ) : null}
         Read Later
       </button>
     );
   } else {
     button = (
-      <button
-        type="button"
-        onClick={removeBtnClick}
-        className="btn-remove"
-        title="remove from read later"
-      >
+      <button type="button" onClick={removeBtnClick} className="btn-remove">
         Remove
       </button>
     );
@@ -76,12 +66,8 @@ function InnerInfo(props) {
       <p className="description-inner">{description}</p>
 
       <div className="book-btns-inner">
-        {/* fadeout description text at the bottom */}
-        <div className="fadeout"></div>
-
-        {button}
         {/* btn ReadLater or Remove (depends on the scope) */}
-
+        {button}
         <a
           className="btn-preview"
           href={previewLink}

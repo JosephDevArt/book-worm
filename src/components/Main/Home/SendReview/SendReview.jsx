@@ -62,7 +62,7 @@ function SendReview() {
         {responseMessage && (
           <p
             className={
-              responseMessage == "Success" ? "msg-success" : "msg-error"
+              responseMessage === "Success" ? "msg-success" : "msg-error"
             }
           >
             {responseMessage}

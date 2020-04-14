@@ -15,7 +15,7 @@ function Book(props) {
   const isAuthorized = useSelector((state) => state.user.isAuthorized);
 
   const {
-    title = "no title",
+    title,
     imageLinks: { smallThumbnail: image } = "",
   } = props.book.volumeInfo;
 
@@ -44,8 +44,9 @@ function Book(props) {
         scope={props.scope}
         info={props.book}
       />
-      <img src={image ? image : noImg} alt="Book" />
-      <p className="title-outer">{title}</p>
+      {/* fix 'mix-content' problem,replace http with https */}
+      <img src={image ? "https" + image.slice(4) : noImg} alt="Book" />
+      <p className="title-outer">{title ? title.slice(0, 50) : "no title"}</p>
     </li>
   );
 }

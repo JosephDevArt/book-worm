@@ -23,7 +23,7 @@ const readLaterReducer = (state = initialState, action) => {
     }
     case REMOVE_FROM_READ_LATER: {
       const filteredBooks = state.readLaterBooks.filter(
-        (book) => book != action.removedBook
+        (book) => book !== action.removedBook
       );
       return {
         ...state,

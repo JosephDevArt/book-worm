@@ -22,7 +22,7 @@ function Books() {
   const inputEl = useRef(null);
 
   const searchBtnClick = () => {
-    dispatch(getBooks(inputEl.current.value));
+    dispatch(getBooks(inputEl.current));
   };
 
   const handleScroll = throttle(() => {

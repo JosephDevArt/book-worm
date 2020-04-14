@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingAnimation from "react-circle-loading-animation";
 
@@ -20,13 +20,14 @@ function App() {
 
   if (isInitialized) {
     return (
-      <BrowserRouter>
+      //using HashRouter for gh-pages
+      <HashRouter>
         <div className="App">
           <Nav />
           <Header />
           <Main />
         </div>
-      </BrowserRouter>
+      </HashRouter>
     );
   } else {
     return <LoadingAnimation isLoading={true} />;

@@ -72,7 +72,7 @@ const TotalAndSort = ({ scope }) => {
   };
 
   useEffect(() => {
-    if (isFetching == true) {
+    if (isFetching === true) {
       //run sort only after books have been fetched
       return;
     }

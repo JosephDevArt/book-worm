@@ -24,6 +24,8 @@
       border: 1px solid $primary-purple;
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
       transition: 0.2s ease-in-out;
       &:focus {
         outline: none;

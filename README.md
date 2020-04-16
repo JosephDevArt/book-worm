@@ -23,3 +23,9 @@ Skeleton for social network for those who love to read
 - Follow/unfollow users (fake REST API)
 - Send review (Email js)
 - Client side pagination
+
+### View app:
+
+[Click here](https://josephdevart.github.io/book-worm/) full
+
+[Click here](https://josephdevart.github.io/book-worm-demo/) demo(no login)

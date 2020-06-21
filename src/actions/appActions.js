@@ -7,8 +7,7 @@ export const setIsInitialized = () => ({ type: SET_IS_INITIALIZED });
 
 export const initializeApp = () => (dispatch) => {
   //initialize App after posts and users have been fetched
-  dispatch(getPosts());
-  dispatch(getUsers());
+
 
   let posts = dispatch(getPosts());
   let users = dispatch(getUsers());

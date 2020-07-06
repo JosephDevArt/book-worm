@@ -14,6 +14,7 @@ Skeleton for social network for those who love to read
 - CSS3 (Scss)
 - React js
 - Redux
+- Email.js
 
 ## Main features
 
